@@ -1465,161 +1465,241 @@ collections:
       try{ await navigator.clipboard.writeText(txt); toast("Hasil perhitungan tersalin."); }
       catch(e){ const ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); toast("Hasil perhitungan tersalin."); }
     }
-    function downloadPDF(){
+    /* ================= PDF: pemuat dinamis jsPDF ================= */
+    var JSPDF_URL = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    function loadJsPDFOnce(){
+      return new Promise(function(resolve){
+        if(window.jspdf && window.jspdf.jsPDF){ resolve(true); return; }
+        var s=document.createElement("script");
+        s.src=JSPDF_URL; s.async=true;
+        var done=false;
+        var timer=setTimeout(function(){ try{s.remove();}catch(e){} finish(false); }, 9000);
+        function finish(ok){ if(done) return; done=true; clearTimeout(timer); resolve(!!ok && !!(window.jspdf && window.jspdf.jsPDF)); }
+        s.onload=function(){ finish(true); };
+        s.onerror=function(){ try{s.remove();}catch(e){} finish(false); };
+        document.head.appendChild(s);
+      });
+    }
+    async function ensureJsPDF(){
+      if(window.jspdf && window.jspdf.jsPDF) return true;
+      if(await loadJsPDFOnce()) return true;
+      return loadJsPDFOnce(); /* satu kali retry */
+    }
+    async function downloadPDF(){
       if(!currentResult) return;
-      const {tool,res,time}=currentResult;
-      if(!(window.jspdf && window.jspdf.jsPDF)){
-        const blob=new Blob([resultText()],{type:"text/plain;charset=utf-8"});
-        const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="laporan-"+tool.id+"-petani-bijak.txt"; a.click(); URL.revokeObjectURL(a.href);
-        toast("Library PDF tidak termuat — laporan diunduh sebagai file teks.");
-        return;
-      }
+      var snapshot=currentResult;
+      var btn=document.getElementById("res-pdf");
+      if(btn){ btn.disabled=true; btn.textContent="Menyiapkan PDF…"; }
+      toast("Menyiapkan laporan PDF berdesain…");
       try{
-        const doc=new window.jspdf.jsPDF({unit:"mm",format:"a4"});
-        const W=210, M=14, CW=W-2*M;
-        const FOREST=[23,75,53], AGRI=[50,134,83], LIME=[164,201,107], CREAM=[246,248,238], INK=[32,44,36], SOFT=[90,105,94], LINE=[216,222,204], GOLD=[217,164,65], LIGHT=[238,243,228];
-        const reportNo="PB-"+time.getFullYear()+String(time.getMonth()+1).padStart(2,"0")+String(time.getDate()).padStart(2,"0")+"-"+String(time.getTime()).slice(-5);
-        let y=0;
-        const setFill=c=>doc.setFillColor(c[0],c[1],c[2]);
-        const setTxt=c=>doc.setTextColor(c[0],c[1],c[2]);
-        const setDraw=c=>doc.setDrawColor(c[0],c[1],c[2]);
-        function footerBand(){
-          const pg=doc.getCurrentPageInfo().pageNumber;
-          setDraw(LINE); doc.setLineWidth(.3); doc.line(M,284,W-M,284);
-          doc.setFont("helvetica","normal"); doc.setFontSize(7.6); setTxt(SOFT);
-          doc.text("Petani Bijak Indonesia — Petani Cerdas, Hasil Berkualitas  ·  renaldosinaga98@gmail.com  ·  github.com/renaldosinaga98/petanibijakindo", M, 289);
-          doc.text("Halaman "+pg, W-M, 289, {align:"right"});
-        }
-        function contHeader(){
-          setFill(FOREST); doc.rect(0,0,W,13,"F"); setFill(LIME); doc.rect(0,13,W,1,"F");
-          doc.setFont("helvetica","bold"); doc.setFontSize(8.6); setTxt([255,255,255]);
-          doc.text("PETANI BIJAK INDONESIA", M, 8.4);
-          doc.setFont("helvetica","normal"); setTxt(LIME);
-          doc.text("Laporan "+tool.name+"  ·  No. "+reportNo, W-M, 8.4, {align:"right"});
-          setTxt(INK); y=20;
-        }
-        function ensure(h){ if(y+h>278){ footerBand(); doc.addPage(); contHeader(); } }
-        function sectionTitle(t){
-          ensure(12);
-          doc.setFont("helvetica","bold"); doc.setFontSize(10.5); setTxt(FOREST);
-          doc.text(t.toUpperCase(), M, y+4);
-          setFill(LIME); doc.rect(M, y+6, 14, 1.1, "F");
-          y+=11;
-        }
-        function table(rows, c1w){
-          const c2w=CW-c1w;
-          rows.forEach((r,i)=>{
-            doc.setFont("helvetica","normal"); doc.setFontSize(9.3);
-            const l1=doc.splitTextToSize(String(r[0]), c1w-4);
-            doc.setFont("helvetica","bold");
-            const l2=doc.splitTextToSize(String(r[1]), c2w-4);
-            const h=Math.max(l1.length,l2.length)*4.6+3.4;
-            ensure(h);
-            if(i%2===0){ setFill(CREAM); doc.rect(M,y,CW,h,"F"); }
-            setDraw(LINE); doc.setLineWidth(.22); doc.line(M,y,M+CW,y);
-            doc.setFont("helvetica","normal"); setTxt(SOFT); doc.text(l1, M+2, y+5.4);
-            doc.setFont("helvetica","bold"); setTxt(INK); doc.text(l2, M+c1w+2, y+5.4);
-            y+=h;
-          });
-          setDraw(LINE); doc.line(M,y,M+CW,y); y+=4;
-        }
-        /* ===== Header utama ===== */
-        setFill(FOREST); doc.rect(0,0,W,36,"F");
-        setFill(AGRI); doc.rect(0,36,W,1.7,"F"); setFill(LIME); doc.rect(0,37.7,W,.8,"F");
-        setFill(LIME); doc.roundedRect(M,8,13,13,3,3,"F");
-        doc.setDrawColor(23,75,53); doc.setLineWidth(1.1);
-        doc.line(M+6.5,18.6,M+6.5,11.5);
-        doc.setFillColor(23,75,53);
-        doc.ellipse(M+3.6,12.6,2.7,1.7,"F"); doc.ellipse(M+9.4,11.6,2.7,1.7,"F");
-        doc.setFont("helvetica","bold"); doc.setFontSize(15.5); setTxt([255,255,255]);
-        doc.text("PETANI BIJAK INDONESIA", M+17, 14.5);
-        doc.setFont("helvetica","normal"); doc.setFontSize(8.6); setTxt(LIME);
-        doc.text("Petani Cerdas, Hasil Berkualitas  ·  Platform Kalkulator Pertanian & Panduan Budidaya", M+17, 20.2);
-        setTxt([255,255,255]); doc.setFontSize(7.8);
-        doc.text("Dikelola oleh Renaldo Sinaga — Team Vexora", M+17, 25.2);
-        doc.setFont("helvetica","bold"); doc.setFontSize(10); setTxt([255,255,255]);
-        doc.text("LAPORAN HASIL", W-M, 13.5, {align:"right"});
-        doc.text("PERHITUNGAN", W-M, 19, {align:"right"});
-        doc.setFont("helvetica","normal"); doc.setFontSize(8); setTxt(LIME);
-        doc.text("No. "+reportNo, W-M, 25.2, {align:"right"});
-        /* ===== Strip meta ===== */
-        y=44;
-        setFill(LIGHT); doc.roundedRect(M,y,CW,13,2,2,"F");
-        doc.setFontSize(8.4);
-        doc.setFont("helvetica","bold"); setTxt(FOREST); doc.text("Kalkulator", M+4, y+5.4);
-        doc.setFont("helvetica","normal"); setTxt(INK); doc.text(doc.splitTextToSize(tool.name,58), M+4, y+10);
-        doc.setFont("helvetica","bold"); setTxt(FOREST); doc.text("Tanggal & Waktu", M+72, y+5.4);
-        doc.setFont("helvetica","normal"); setTxt(INK); doc.text(time.toLocaleString("id-ID",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"})+" WIB", M+72, y+10);
-        doc.setFont("helvetica","bold"); setTxt(FOREST); doc.text("Kategori", M+140, y+5.4);
-        doc.setFont("helvetica","normal"); setTxt(INK); doc.text(doc.splitTextToSize(tool.cat,40), M+140, y+10);
-        y+=19;
-        /* ===== Hasil utama ===== */
-        sectionTitle("Hasil Utama");
-        setFill(FOREST); doc.roundedRect(M,y,CW,25,2.5,2.5,"F");
-        setFill(LIME); doc.rect(M,y,2.2,25,"F");
-        doc.setFont("helvetica","bold"); doc.setFontSize(8.2); setTxt(LIME);
-        doc.text(res.highlight.label.toUpperCase(), M+7, y+7);
-        doc.setFontSize(19); setTxt([255,255,255]);
-        doc.text(doc.splitTextToSize(res.highlight.val, CW-14), M+7, y+15.5);
-        if(res.highlight.sub){ doc.setFont("helvetica","normal"); doc.setFontSize(9); setTxt([222,236,208]); doc.text(doc.splitTextToSize(res.highlight.sub, CW-14), M+7, y+21.4); }
-        y+=31;
-        /* ===== Data dimasukkan ===== */
-        sectionTitle("Data yang Dimasukkan");
-        table(inputRecap(), 92);
-        /* ===== Rincian hasil ===== */
-        sectionTitle("Rincian Hasil Perhitungan");
-        /* header tabel */
-        ensure(8); setFill(AGRI); doc.rect(M,y,CW,8,"F");
-        doc.setFont("helvetica","bold"); doc.setFontSize(9); setTxt([255,255,255]);
-        doc.text("Komponen", M+2, y+5.4); doc.text("Nilai", M+112, y+5.4);
-        y+=8; setTxt(INK);
-        table(res.rows, 110);
-        /* ===== Grafik khusus keuntungan panen ===== */
-        if(tool.id==="untung"){
-          const vv=currentResult.vals;
-          const totalKg=vv.luas*vv.hasil, pend=totalKg*vv.harga, unt=Math.max(pend-vv.biaya,0);
-          const max=Math.max(pend,vv.biaya,unt)||1;
-          sectionTitle("Grafik Pendapatan vs Biaya");
-          [["Pendapatan kotor",pend,AGRI],["Total biaya produksi",vv.biaya,[196,85,46]],["Keuntungan bersih",unt,LIME]].forEach(b=>{
-            ensure(11);
-            doc.setFont("helvetica","normal"); doc.setFontSize(8.8); setTxt(INK);
-            doc.text(b[0], M, y+3.6);
-            doc.setFont("helvetica","bold"); doc.text(fmtIDR(b[1]), W-M, y+3.6, {align:"right"});
-            setFill([233,238,224]); doc.roundedRect(M,y+5.4,CW,3.6,1.6,1.6,"F");
-            setFill(b[2]); if(b[1]>0) doc.roundedRect(M,y+5.4,Math.max(4,CW*b[1]/max),3.6,1.6,1.6,"F");
-            y+=12;
-          });
-          y+=2;
-        }
-        /* ===== Catatan ===== */
-        if(res.note){
-          const lines=doc.splitTextToSize(res.note.text, CW-8);
-          ensure(12+lines.length*4.4);
-          const warn=res.note.type==="warn";
-          setFill(warn?[251,243,220]:LIGHT); doc.roundedRect(M,y,CW,10+lines.length*4.4,2,2,"F");
-          setFill(warn?GOLD:LIME); doc.rect(M,y,2.2,10+lines.length*4.4,"F");
-          doc.setFont("helvetica","bold"); doc.setFontSize(9.4); setTxt(warn?[122,91,18]:FOREST);
-          doc.text(res.note.title, M+5, y+6.4);
-          doc.setFont("helvetica","normal"); doc.setFontSize(8.8); setTxt(INK);
-          doc.text(lines, M+5, y+11.6);
-          y+=14+lines.length*4.4;
-        }
-        /* ===== Disclaimer ===== */
-        ensure(20);
-        doc.setFont("helvetica","bold"); doc.setFontSize(8.4); setTxt(FOREST); doc.text("Catatan Penting", M, y+4);
-        doc.setFont("helvetica","normal"); doc.setFontSize(8.2); setTxt(SOFT);
-        const disc=doc.splitTextToSize("Hasil pada laporan ini adalah estimasi perencanaan berdasarkan angka yang Anda masukkan dan acuan rekomendasi agronomis umum (Kementerian Pertanian/Balitbangtan). Hasil nyata dipengaruhi cuaca, varietas, kesuburan tanah, dan harga pasar. Untuk dosis pestisida, selalu ikuti label resmi produk. Laporan dibuat otomatis oleh kalkulator Petani Bijak Indonesia dan dapat dibagikan kepada kelompok tani atau penyuluh Anda.", CW);
-        doc.text(disc, M, y+8.6); y+=10+disc.length*3.9;
-        footerBand();
-        const pages=doc.getNumberOfPages();
-        for(let p=2;p<=pages;p++){ doc.setPage(p); }
-        doc.save("laporan-"+tool.id+"-petani-bijak-indonesia.pdf");
-        toast("Laporan PDF berdesain berhasil diunduh.");
+        var ok=await ensureJsPDF();
+        if(!ok) throw new Error("Perpustakaan PDF tidak dapat dimuat.");
+        buildReportPDF(snapshot);
+        toast("Laporan PDF berhasil diunduh.");
       }catch(err){
-        const blob=new Blob([resultText()],{type:"text/plain;charset=utf-8"});
-        const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="laporan-"+tool.id+"-petani-bijak.txt"; a.click(); URL.revokeObjectURL(a.href);
-        toast("PDF gagal dibuat — laporan diunduh sebagai file teks.");
+        toast("Maaf, laporan PDF gagal dibuat. Periksa koneksi internet Anda, lalu tekan tombol Unduh Laporan PDF sekali lagi.");
+      }finally{
+        var b=document.getElementById("res-pdf");
+        if(b){ b.disabled=false; b.textContent="Unduh Laporan PDF"; }
       }
+    }
+    function buildReportPDF(snapshot){
+      var tool=snapshot.tool, res=snapshot.res, time=snapshot.time, vals=snapshot.vals;
+      var doc=new window.jspdf.jsPDF({unit:"mm", format:"a4"});
+      var W=210, H=297, M=16, CW=W-2*M;
+      var FOREST=[23,75,53], AGRI=[50,134,83], LIME=[164,201,107], LIMELT=[220,236,192],
+          CREAM=[248,247,239], LIGHT=[238,243,228], INK=[32,44,36], SOFT=[74,90,78],
+          LINEC=[216,222,204], WHITE=[255,255,255], GOLD=[217,164,65],
+          WARNBG=[251,243,220], WARNINK=[122,91,18], TRACK=[233,238,224], RUST=[178,64,42];
+      var reportNo="PB-"+time.getFullYear()+String(time.getMonth()+1).padStart(2,"0")+String(time.getDate()).padStart(2,"0")+"-"+String(time.getTime()).slice(-5);
+      var dateLong=time.toLocaleString("id-ID",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"})+" WIB";
+      var y=0, page=1;
+      function fill(c){ doc.setFillColor(c[0],c[1],c[2]); }
+      function txt(c){ doc.setTextColor(c[0],c[1],c[2]); }
+      function drawC(c){ doc.setDrawColor(c[0],c[1],c[2]); }
+      function safe(fn){ try{ fn(); }catch(e){} }
+      function footer(){
+        doc.setLineWidth(0.3); drawC(LINEC); doc.line(M,H-15,W-M,H-15);
+        doc.setFont("helvetica","normal"); doc.setFontSize(7.4); txt(SOFT);
+        doc.text("Petani Bijak Indonesia — Petani Cerdas, Hasil Berkualitas  ·  renaldosinaga98@gmail.com", M, H-10);
+        doc.text("Halaman "+page, W-M, H-10, {align:"right"});
+        txt(INK);
+      }
+      function contHeader(){
+        fill(FOREST); doc.rect(0,0,W,12,"F");
+        fill(LIME); doc.rect(0,12,W,0.9,"F");
+        doc.setFont("helvetica","bold"); doc.setFontSize(8.4); txt(WHITE);
+        doc.text("PETANI BIJAK INDONESIA", M, 7.8);
+        doc.setFont("helvetica","normal"); txt(LIMELT);
+        doc.text("No. "+reportNo, W-M, 7.8, {align:"right"});
+        txt(INK); y=19;
+      }
+      function ensure(h){ if(y+h>H-19){ footer(); doc.addPage(); page++; contHeader(); } }
+      function sectionTitle(t){
+        ensure(13);
+        doc.setFont("helvetica","bold"); doc.setFontSize(11); txt(FOREST);
+        doc.text(t, M, y+4.2);
+        safe(function(){ fill(LIME); doc.rect(M, y+6.2, 16, 1.2, "F"); });
+        y+=10.6;
+      }
+      function table(rows, c1w, header){
+        if(header){
+          ensure(9.5);
+          fill(AGRI); doc.rect(M,y,CW,8.5,"F");
+          doc.setFont("helvetica","bold"); doc.setFontSize(8.6); txt(WHITE);
+          doc.text(header[0], M+3, y+5.6);
+          doc.text(header[1], M+c1w+3, y+5.6);
+          y+=8.5; txt(INK);
+        }
+        rows.forEach(function(r,i){
+          doc.setFontSize(9.4);
+          doc.setFont("helvetica","normal");
+          var l1=doc.splitTextToSize(String(r[0]), c1w-6);
+          doc.setFont("helvetica","bold");
+          var l2=doc.splitTextToSize(String(r[1]), CW-c1w-6);
+          var h=Math.max(l1.length,l2.length)*4.5+3.6;
+          ensure(h);
+          if(i%2===0){ fill(CREAM); doc.rect(M,y,CW,h,"F"); }
+          doc.setLineWidth(0.2); drawC(LINEC); doc.line(M,y,M+CW,y);
+          doc.setFont("helvetica","normal"); txt(SOFT); doc.text(l1, M+3, y+5.5);
+          doc.setFont("helvetica","bold"); txt(INK); doc.text(l2, M+c1w+3, y+5.5);
+          y+=h;
+        });
+        doc.setLineWidth(0.2); drawC(LINEC); doc.line(M,y,M+CW,y);
+        y+=3.8;
+      }
+      /* ===== Kop utama ===== */
+      fill(FOREST); doc.rect(0,0,W,36,"F");
+      fill(AGRI); doc.rect(0,36,W,1.6,"F");
+      fill(LIME); doc.rect(0,37.6,W,0.8,"F");
+      safe(function(){
+        fill(LIME); doc.rect(M,7.5,14,14,"F");
+        doc.setFont("helvetica","bold"); doc.setFontSize(10.5); txt(FOREST);
+        doc.text("PB", M+7, 16.9, {align:"center"});
+      });
+      doc.setFont("helvetica","bold"); doc.setFontSize(15.5); txt(WHITE);
+      doc.text("PETANI BIJAK INDONESIA", M+18, 13.8);
+      doc.setFont("helvetica","normal"); doc.setFontSize(8.6); txt(LIME);
+      doc.text("Petani Cerdas, Hasil Berkualitas", M+18, 19.2);
+      doc.setFontSize(7.8); txt(LIMELT);
+      doc.text("Platform Kalkulator Pertanian & Panduan Budidaya Indonesia", M+18, 24);
+      doc.text("Dikelola oleh Renaldo Sinaga — Team Vexora", M+18, 28.6);
+      doc.setFont("helvetica","bold"); doc.setFontSize(10.5); txt(WHITE);
+      doc.text("LAPORAN HASIL", W-M, 13, {align:"right"});
+      doc.text("PERHITUNGAN", W-M, 18.2, {align:"right"});
+      doc.setFont("helvetica","normal"); doc.setFontSize(8); txt(LIME);
+      doc.text("No. "+reportNo, W-M, 23.8, {align:"right"});
+      doc.setFontSize(7.6); txt(LIMELT);
+      doc.text(dateLong, W-M, 28.4, {align:"right"});
+      txt(INK);
+      /* ===== Strip meta ===== */
+      y=43;
+      var dateShort=time.toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})+" · "+String(time.getHours()).padStart(2,"0")+"."+String(time.getMinutes()).padStart(2,"0")+" WIB";
+      var metaCols=[
+        ["KALKULATOR", tool.name, 62],
+        ["TANGGAL LAPORAN", dateShort, 56],
+        ["KATEGORI", tool.cat, 46]
+      ];
+      doc.setFont("helvetica","normal"); doc.setFontSize(8.8);
+      var metaLines=metaCols.map(function(c){ return doc.splitTextToSize(c[1], c[2]); });
+      var metaH=9.5+Math.max.apply(null, metaLines.map(function(l){return l.length;}))*4.3+2;
+      fill(LIGHT); doc.rect(M,y,CW,metaH,"F");
+      var mx=M+4;
+      metaCols.forEach(function(c,i){
+        doc.setFont("helvetica","bold"); doc.setFontSize(7.4); txt(SOFT);
+        doc.text(c[0], mx, y+5.6);
+        doc.setFont("helvetica","normal"); doc.setFontSize(8.8); txt(INK);
+        doc.text(metaLines[i], mx, y+10.6);
+        mx+=c[2]+8;
+      });
+      y+=metaH+5;
+      /* ===== Hasil utama ===== */
+      sectionTitle("Hasil Utama");
+      var valSize=20;
+      doc.setFont("helvetica","bold");
+      var valLines=null;
+      [20,17,14.5,12.5].forEach(function(s){
+        if(valLines) return;
+        doc.setFontSize(s);
+        var l=doc.splitTextToSize(String(res.highlight.val), CW-15);
+        if(l.length<=2){ valSize=s; valLines=l; }
+      });
+      if(!valLines){ doc.setFontSize(12.5); valLines=doc.splitTextToSize(String(res.highlight.val), CW-15); }
+      doc.setFont("helvetica","normal"); doc.setFontSize(9);
+      var subLines=res.highlight.sub ? doc.splitTextToSize(String(res.highlight.sub), CW-15) : [];
+      var hlH=9.5+valLines.length*(valSize*0.45)+ (subLines.length? subLines.length*4.4+2 : 0) +2.5;
+      ensure(hlH+2);
+      fill(FOREST); doc.rect(M,y,CW,hlH,"F");
+      safe(function(){ fill(LIME); doc.rect(M,y,2.4,hlH,"F"); });
+      doc.setFont("helvetica","bold"); doc.setFontSize(8.2); txt(LIME);
+      doc.text(String(res.highlight.label).toUpperCase(), M+7, y+6.5);
+      doc.setFontSize(valSize); txt(WHITE);
+      doc.text(valLines, M+7, y+6.5+valSize*0.45+1.2);
+      if(subLines.length){
+        doc.setFont("helvetica","normal"); doc.setFontSize(9); txt(LIMELT);
+        doc.text(subLines, M+7, y+6.5+valLines.length*(valSize*0.45)+6.4);
+      }
+      txt(INK); y+=hlH+4;
+      /* ===== Data yang dimasukkan ===== */
+      sectionTitle("Data yang Dimasukkan");
+      var recap=(function(){
+        var keep=currentResult; currentResult=snapshot;
+        var r=inputRecap(); currentResult=keep; return r;
+      })();
+      table(recap, 88, null);
+      /* ===== Rincian hasil ===== */
+      sectionTitle("Rincian Hasil Perhitungan");
+      table(res.rows, 104, ["Komponen","Nilai"]);
+      /* ===== Grafik khusus Keuntungan Panen ===== */
+      if(tool.id==="untung"){
+        safe(function(){
+          var totalKg=vals.luas*vals.hasil, pend=totalKg*vals.harga, unt=pend-vals.biaya;
+          var max=Math.max(pend, vals.biaya, Math.max(unt,0))||1;
+          sectionTitle("Grafik Pendapatan vs Biaya");
+          [["Pendapatan kotor", pend, AGRI],["Total biaya produksi", vals.biaya, RUST],["Keuntungan bersih", Math.max(unt,0), AGRI]].forEach(function(b,bi){
+            ensure(13);
+            doc.setFont("helvetica","normal"); doc.setFontSize(8.8); txt(INK);
+            doc.text(b[0], M, y+3.8);
+            doc.setFont("helvetica","bold");
+            doc.text(fmtIDR(b[1]), W-M, y+3.8, {align:"right"});
+            fill(TRACK); doc.rect(M,y+5.6,CW,3.8,"F");
+            if(b[1]>0){ fill(bi===2?LIME:b[2]); doc.rect(M,y+5.6,Math.max(4,CW*b[1]/max),3.8,"F"); }
+            y+=12.5;
+          });
+          if(unt<0){
+            doc.setFont("helvetica","normal"); doc.setFontSize(8.6); txt(RUST);
+            doc.text("Keuntungan bersih negatif ("+fmtIDR(unt)+") — lihat catatan di bawah.", M, y+2);
+            y+=6;
+          }
+          y+=2; txt(INK);
+        });
+      }
+      /* ===== Catatan / peringatan ===== */
+      if(res.note){
+        var warn=res.note.type==="warn";
+        doc.setFont("helvetica","normal"); doc.setFontSize(8.9);
+        var nLines=doc.splitTextToSize(String(res.note.text), CW-11);
+        var nH=10.5+nLines.length*4.3+1.5;
+        ensure(nH+2);
+        fill(warn?WARNBG:LIGHT); doc.rect(M,y,CW,nH,"F");
+        safe(function(){ fill(warn?GOLD:LIME); doc.rect(M,y,2.4,nH,"F"); });
+        doc.setFont("helvetica","bold"); doc.setFontSize(9.4); txt(warn?WARNINK:FOREST);
+        doc.text(String(res.note.title), M+5.5, y+6.2);
+        doc.setFont("helvetica","normal"); doc.setFontSize(8.9); txt(INK);
+        doc.text(nLines, M+5.5, y+11.6);
+        y+=nH+4;
+      }
+      /* ===== Disclaimer ===== */
+      var discTxt="Hasil ini adalah estimasi perencanaan berdasarkan data yang Anda masukkan dan acuan rekomendasi agronomis umum (Kementerian Pertanian/Balitbangtan). Hasil nyata dipengaruhi cuaca, varietas, kesuburan tanah, dan harga pasar. Untuk dosis pestisida, selalu ikuti label resmi produk. Bagikan laporan ini kepada kelompok tani atau penyuluh Anda bila diperlukan.";
+      var discPre=doc.splitTextToSize(discTxt, CW);
+      ensure(9+discPre.length*3.6);
+      doc.setFont("helvetica","bold"); doc.setFontSize(8.4); txt(FOREST);
+      doc.text("Catatan Penting", M, y+3.6);
+      doc.setFont("helvetica","normal"); doc.setFontSize(8); txt(SOFT);
+      doc.text(discPre, M, y+7.6);
+      y+=8.6+discPre.length*3.6;
+      footer();
+      doc.save("laporan-"+tool.id+"-petani-bijak-indonesia.pdf");
     }
     async function shareResult(){
       const txt=resultText(); if(!txt) return;
