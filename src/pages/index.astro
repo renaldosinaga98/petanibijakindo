@@ -64,10 +64,12 @@
         --bg:var(--cream); --surface:#FFFFFF; --surface-2:#F1F2E6; --chip:#EDF3E2;
         --shadow:0 10px 30px rgba(23,75,53,.10); --shadow-lg:0 24px 60px rgba(23,75,53,.16);
         --radius:18px; --danger:#B3402A; --warn-bg:#FBF3DC; --warn-ink:#7A5B12;
+        --input-bg:#FFFFFF; --input-border:#C4CFB8; --danger-soft:#FDF0EC;
       }
       html[data-theme="dark"]{
         --bg:#10190F; --surface:#182619; --surface-2:#1E2F1D; --chip:#22351F; --paper:#182619;
         --ink:#EDF3E4; --ink-soft:#B9C8B2; --line:#2C4229; --cream:#10190F;
+        --input-bg:#22371F; --input-border:#44603F; --danger:#FF9D85; --danger-soft:#3A211A;
         --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
         --warn-bg:#3A3013; --warn-ink:#EFD489;
       }
@@ -152,24 +154,30 @@
       .kicker{color:var(--agri);font-weight:800;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
 
       .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-      .cat-card{display:flex;gap:15px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;color:var(--ink);transition:transform .18s ease, box-shadow .18s ease;text-align:left;width:100%;font:inherit}
+      .cat-card{display:flex;gap:15px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;color:var(--ink);transition:transform .18s ease, box-shadow .18s ease;text-align:left;width:100%;font:inherit}
       .cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);text-decoration:none}
       .cat-ic{width:52px;height:52px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:var(--chip)}
-      .cat-card b{display:block;font-size:1rem}
-      .cat-card span{color:var(--ink-soft);font-size:.86rem}
+      .cat-card b{display:block;font-size:1rem;line-height:1.35;margin-bottom:2px}
+      .cat-card span{color:var(--ink-soft);font-size:.86rem;line-height:1.5}
 
       .tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
       .tool-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease, box-shadow .18s ease}
       .tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
       .tool-art{aspect-ratio:400/215;background:var(--surface-2);border-bottom:1px solid var(--line)}
       .tool-art svg{width:100%;height:100%}
-      .tool-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
+      .tool-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
       .tool-body .tag{align-self:flex-start;background:var(--chip);color:var(--forest);font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
       html[data-theme="dark"] .tool-body .tag{color:var(--lime)}
-      .tool-body h3{font-size:1.08rem;font-weight:800}
-      .tool-body p{color:var(--ink-soft);font-size:.9rem;margin:0;flex:1}
-      .tool-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
-      .tool-foot .free{font-size:.8rem;font-weight:700;color:var(--agri)}
+      .tool-body h3{font-size:1.08rem;font-weight:800;line-height:1.3}
+      .tool-body p{color:var(--ink-soft);font-size:.9rem;line-height:1.6;margin:0;flex:1}
+      .tool-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
+      .tool-foot .free{font-size:.8rem;font-weight:600;color:var(--ink-soft);letter-spacing:.01em;white-space:nowrap}
+      .tool-cta{display:inline-flex;align-items:center;gap:7px;margin-left:auto;padding:7px 4px;min-height:38px;font-size:.9rem;font-weight:700;color:var(--agri-dark);border-radius:8px}
+      .tool-cta .arr{font-weight:800;transition:transform .16s ease}
+      .tool-cta:hover{color:var(--forest);text-decoration:underline;text-underline-offset:4px}
+      .tool-cta:hover .arr{transform:translateX(3px)}
+      html[data-theme="dark"] .tool-cta{color:var(--lime)}
+      html[data-theme="dark"] .tool-cta:hover{color:#CDE79B}
 
       /* ---------- Calculator ---------- */
       .crumb{font-size:.85rem;color:var(--ink-soft);margin:26px 0 4px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -179,34 +187,44 @@
       .calc-head p{color:var(--ink-soft);margin:10px 0 0;max-width:38rem}
       .calc-head .art{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
       .calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;padding-bottom:20px}
-      .panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px}
-      .panel h2{font-size:1.05rem;font-weight:800;margin-bottom:4px}
-      .panel .sub{color:var(--ink-soft);font-size:.87rem;margin:0 0 18px}
-      .field{margin-bottom:15px}
-      .field label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px}
-      .field .hint{font-weight:500;color:var(--ink-soft);font-size:.78rem;margin-top:5px}
-      .field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:11px 13px;font:inherit;font-size:.95rem;background:var(--surface);color:var(--ink)}
+      .panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px}
+      .panel h2{font-size:1.12rem;font-weight:800;line-height:1.3;margin-bottom:5px}
+      .panel .sub{color:var(--ink-soft);font-size:.9rem;line-height:1.55;margin:0 0 20px}
+      /* Form standar untuk semua kalkulator: label → input lebar penuh → hint → error */
+      #calc-fields{display:flex;flex-direction:column;gap:18px}
+      .field{margin:0;display:flex;flex-direction:column;min-width:0}
+      .field label{display:block;font-weight:700;font-size:.875rem;line-height:1.4;color:var(--ink);margin:0 0 7px}
+      .field input,.field select{display:block;width:100%;height:46px;min-height:46px;border:1.5px solid var(--input-border);border-radius:10px;padding:10px 13px;font-family:inherit;font-size:1rem;line-height:1.45;background:var(--input-bg);color:var(--ink);font-variant-numeric:tabular-nums}
+      .field input::placeholder{color:var(--ink-soft);opacity:.7;font-size:.92rem}
       .field input:focus,.field select:focus{border-color:var(--agri);outline:none;box-shadow:0 0 0 3px color-mix(in srgb, var(--lime) 35%, transparent)}
-      .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-      .field .err{color:var(--danger);font-size:.8rem;font-weight:600;margin-top:5px;display:none}
-      .field.invalid input,.field.invalid select{border-color:var(--danger)}
+      .field .hint{font-weight:500;color:var(--ink-soft);font-size:.8rem;line-height:1.5;margin-top:6px}
+      .field .err{display:none;color:var(--danger);font-size:.8rem;line-height:1.45;font-weight:600;margin-top:6px}
+      .field .err[hidden]{display:none!important}
+      .field.invalid input,.field.invalid select{border-color:var(--danger);background:var(--danger-soft)}
       .field.invalid .err{display:block}
+      .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      .calc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+      .calc-actions .btn{min-height:48px}
+      .calc-actions .btn-primary{flex:1 1 200px;justify-content:center}
+      .calc-actions .btn-ghost{flex:0 1 auto;justify-content:center}
       .seg{display:flex;gap:8px;flex-wrap:wrap}
-      .seg button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:11px;padding:9px 15px;font-weight:700;font-size:.88rem;min-height:40px}
+      .seg button{border:1.5px solid var(--input-border);background:var(--input-bg);color:var(--ink);border-radius:10px;padding:10px 16px;font-weight:700;font-size:.9rem;min-height:44px;line-height:1.3}
       .seg button.on{background:var(--forest);color:#fff;border-color:var(--forest)}
-      .result-empty{color:var(--ink-soft);text-align:center;padding:34px 10px}
-      .result-empty .big{font-size:2rem;margin-bottom:6px}
-      .res-highlight{background:linear-gradient(145deg,var(--forest),var(--agri));color:#fff;border-radius:16px;padding:20px;margin-bottom:16px}
-      .res-highlight small{opacity:.85;font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
-      .res-highlight .val{font-size:2rem;font-weight:800;letter-spacing:-.02em;line-height:1.15}
-      .res-highlight .val2{font-size:.95rem;opacity:.92}
+      html[data-theme="dark"] .seg button.on{background:var(--agri);border-color:var(--agri)}
+      .result-empty{color:var(--ink-soft);text-align:center;padding:40px 12px;font-size:.95rem;line-height:1.6}
+      .result-empty .big{font-size:2rem;margin-bottom:8px}
+      .res-highlight{background:linear-gradient(145deg,var(--forest),var(--agri));color:#fff;border-radius:16px;padding:22px;margin-bottom:14px}
+      .res-highlight small{opacity:.88;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px}
+      .res-highlight .val{font-size:clamp(1.7rem,4vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums}
+      .res-highlight .val2{font-size:.95rem;opacity:.94;margin-top:5px;line-height:1.5}
       .res-rows{display:flex;flex-direction:column}
-      .res-row{display:flex;justify-content:space-between;gap:16px;padding:11px 2px;border-bottom:1px dashed var(--line);font-size:.93rem}
+      .res-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:12px 2px;border-bottom:1px dashed var(--line);font-size:.93rem;line-height:1.5}
       .res-row:last-child{border-bottom:0}
-      .res-row span{color:var(--ink-soft)}
-      .res-row b{text-align:right;font-weight:700}
-      .res-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
-      .note-box{border-radius:14px;padding:14px 16px;font-size:.87rem;margin-top:16px}
+      .res-row span{color:var(--ink-soft);flex:1 1 auto}
+      .res-row b{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;flex:0 1 auto}
+      .res-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+      .res-actions .btn{justify-content:center}
+      .note-box{border-radius:14px;padding:14px 16px;font-size:.88rem;line-height:1.6;margin-top:16px}
       .note-info{background:var(--chip);color:var(--ink)}
       .note-warn{background:var(--warn-bg);color:var(--warn-ink)}
       .note-box b{display:block;margin-bottom:3px}
@@ -219,7 +237,7 @@
       .hist-item time{color:var(--ink-soft);font-size:.76rem;white-space:nowrap}
 
       /* ---------- Articles ---------- */
-      .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+      .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
       .filter-row button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:8px 16px;font-weight:700;font-size:.85rem;min-height:38px}
       .filter-row button.on{background:var(--forest);color:#fff;border-color:var(--forest)}
       .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -227,11 +245,11 @@
       .art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);text-decoration:none}
       .art-thumb{aspect-ratio:16/9;position:relative;overflow:hidden}
       .art-thumb svg{width:100%;height:100%}
-      .art-body{padding:19px;display:flex;flex-direction:column;gap:7px;flex:1}
+      .art-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:9px;flex:1}
       .art-body .meta{font-size:.76rem;font-weight:700;color:var(--agri);letter-spacing:.05em;text-transform:uppercase}
       .art-body h3{font-size:1.05rem;font-weight:800;line-height:1.35}
-      .art-body p{color:var(--ink-soft);font-size:.88rem;margin:0;flex:1}
-      .art-body .byline{font-size:.8rem;color:var(--ink-soft)}
+      .art-body p{color:var(--ink-soft);font-size:.88rem;line-height:1.6;margin:0;flex:1}
+      .art-body .byline{font-size:.8rem;color:var(--ink-soft);margin-top:3px;padding-top:11px;border-top:1px solid var(--line)}
       .article-wrap{max-width:780px;margin:0 auto;padding-bottom:10px}
       .article-wrap h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
       .article-hero{border-radius:22px;overflow:hidden;border:1px solid var(--line);margin:20px 0}
@@ -259,16 +277,16 @@
       .team-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px}
       .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(145deg,var(--agri),var(--lime));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.25rem;margin-bottom:12px}
       .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:20px 0}
-      .ad-slot{border:1.5px dashed var(--line);border-radius:16px;color:var(--ink-soft);text-align:center;padding:20px;font-size:.82rem;font-weight:600;margin:34px 0 6px;background:var(--surface)}
+      .ad-slot{display:block;border:1.5px dashed var(--line);border-radius:16px;padding:20px;margin:34px 0 6px;background:var(--surface);min-height:64px}
 
       /* ---------- Footer ---------- */
       footer.site{background:var(--forest-2);color:#DCE8D2;margin-top:70px}
       html[data-theme="dark"] footer.site{background:#0B1F14}
       .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:48px 0 34px}
       footer.site h4{color:#fff;font-size:.95rem;margin:0 0 13px}
-      footer.site a{color:#C9DCC0;display:block;padding:5px 0;font-size:.9rem}
+      footer.site a{color:#C9DCC0;display:block;padding:6px 0;font-size:.9rem;line-height:1.5}
       footer.site a:hover{color:#fff}
-      footer.site p{font-size:.9rem;margin:0 0 10px}
+      footer.site p{font-size:.9rem;line-height:1.65;margin:0 0 12px}
       .foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding:18px 0 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.84rem}
 
       .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:var(--forest);color:#fff;padding:13px 22px;border-radius:13px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow-lg);z-index:100;transition:transform .3s ease, opacity .3s ease, visibility .3s;max-width:92vw;text-align:center;opacity:0;visibility:hidden;pointer-events:none}
@@ -290,12 +308,12 @@
       .crop-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;color:var(--ink);display:flex;flex-direction:column;transition:transform .18s ease, box-shadow .18s ease}
       .section-band .crop-card{background:var(--bg)}
       .crop-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);text-decoration:none}
-      .crop-thumb{aspect-ratio:16/8.2;overflow:hidden}
+      .crop-thumb{display:block;aspect-ratio:16/8.2;overflow:hidden}
       .crop-thumb svg{width:100%;height:100%}
-      .crop-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
-      .crop-body b{font-size:.98rem}
-      .crop-body span{color:var(--ink-soft);font-size:.83rem;line-height:1.45}
-      .crop-body .go{color:var(--agri);font-weight:800;font-size:.8rem;margin-top:4px}
+      .crop-body{display:flex;flex-direction:column;gap:7px;padding:16px 18px 18px;flex:1}
+      .crop-body .crop-name{display:block;font-size:.98rem;font-weight:800;line-height:1.35;color:var(--ink)}
+      .crop-body .crop-note{display:block;color:var(--ink-soft);font-size:.83rem;line-height:1.6;margin:0;flex:1}
+      .crop-body .go{display:inline-block;align-self:flex-start;color:var(--agri);font-weight:800;font-size:.82rem;line-height:1.4;margin-top:8px;padding-top:2px}
       .eeat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
       .eeat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
       .eeat-card .ic{width:44px;height:44px;border-radius:12px;background:var(--chip);display:grid;place-items:center;margin-bottom:12px}
@@ -307,7 +325,7 @@
       .faq-item summary::-webkit-details-marker{display:none}
       .faq-item summary::after{content:"+";font-size:1.35rem;color:var(--agri);font-weight:800;line-height:1}
       .faq-item[open ] summary::after{content:"–"}
-      .faq-item .faq-a{padding:0 20px 18px;color:var(--ink-soft);font-size:.93rem}
+      .faq-item .faq-a{padding:2px 20px 19px;color:var(--ink-soft);font-size:.93rem;line-height:1.65}
       .faq-item .faq-a p{margin:0}
       .author-box{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:30px;flex-wrap:wrap;align-items:flex-start}
       .author-box .avatar{margin:0}
@@ -326,7 +344,7 @@
       .sched-badge{display:inline-block;background:var(--warn-bg);color:var(--warn-ink);border-radius:99px;padding:3px 10px;font-size:.74rem;font-weight:800;white-space:nowrap}
       @media (max-width:760px){ .sched-table,.sched-table tbody,.sched-table tr,.sched-table td{display:block;width:100%} .sched-table thead{display:none} .sched-table tr{border-top:1px solid var(--line);padding:8px 0} .sched-table td{border-top:0;padding:4px 14px} .sched-table td:first-child{padding-top:10px} }
       @media (max-width:1020px){ .crop-grid{grid-template-columns:repeat(2,1fr)} .eeat-grid{grid-template-columns:1fr} }
-      @media (max-width:760px){ .crop-grid{grid-template-columns:1fr 1fr} .crop-body{padding:11px 12px 13px} .crop-body span{display:none} }
+      @media (max-width:760px){ .crop-grid{grid-template-columns:1fr 1fr} .crop-body{padding:13px 15px 15px;gap:6px} .crop-body .crop-note{font-size:.8rem;line-height:1.55} .crop-body .go{margin-top:6px} }
 
       @media (max-width:1020px){
         .tool-grid,.art-grid,.cat-grid{grid-template-columns:repeat(2,1fr)}
@@ -347,6 +365,11 @@
         .icon-btn{width:38px;height:38px;border-radius:10px}
         .tool-grid,.art-grid,.cat-grid,.how-grid{grid-template-columns:1fr}
         .calc-layout{grid-template-columns:1fr}
+        .panel{padding:20px 18px}
+        #calc-fields{gap:16px}
+        .calc-actions{flex-direction:column}
+        .calc-actions .btn{width:100%;flex:none}
+        .res-actions .btn{flex:1 1 100%}
         .stats{grid-template-columns:repeat(2,1fr)}
         .team-grid{grid-template-columns:1fr}
         .field-row{grid-template-columns:1fr}
@@ -478,7 +501,7 @@
               <div class="how-card"><div class="num">2</div><h3>Isi data lahan Anda</h3><p>Masukkan luas, dosis rekomendasi, dan harga yang berlaku di daerah Anda. Semua kolom tervalidasi agar tidak salah hitung.</p></div>
               <div class="how-card"><div class="num">3</div><h3>Simpan &amp; bagikan hasil</h3><p>Salin hasil, unduh sebagai PDF, atau bagikan ke kelompok tani. Riwayat perhitungan sesi ini tersimpan di halaman kalkulator.</p></div>
             </div>
-            <div class="ad-slot" aria-hidden="true">Area Iklan — Google AdSense (ditampilkan setelah persetujuan AdSense, tidak mengganggu konten)</div>
+            <div class="ad-slot" aria-hidden="true"></div>
           </div>
         </section>
 
@@ -572,8 +595,8 @@
               <h2>Data Perhitungan</h2>
               <p class="sub">Isi kolom di bawah ini, lalu tekan tombol Hitung. Angka desimal boleh memakai koma atau titik.</p>
               <div id="calc-fields"></div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-                <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center">Hitung Sekarang</button>
+              <div class="calc-actions">
+                <button type="submit" class="btn btn-primary">Hitung Sekarang</button>
                 <button type="button" class="btn btn-ghost" id="calc-reset">Reset</button>
               </div>
               <div id="calc-extra-note"></div>
@@ -603,7 +626,7 @@
           </div>
           <div class="filter-row" id="art-filter"></div>
           <div class="art-grid" id="articles-grid" style="padding-bottom:16px"></div>
-          <div class="ad-slot" aria-hidden="true">Area Iklan — Google AdSense (ditampilkan setelah persetujuan AdSense, tidak mengganggu konten)</div>
+          <div class="ad-slot" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -1562,7 +1585,7 @@ collections:
     function toolCard(t){
       return `<article class="tool-card"><div class="tool-art" role="img" aria-label="Ilustrasi ${t.name} — Petani Bijak Indonesia (petanibijakindonesia.click)">${ILLUS[t.illus]()}</div>
         <div class="tool-body"><span class="tag">${t.cat}</span><h3>${t.name}</h3><p>${t.desc}</p>
-        <div class="tool-foot"><span class="free">Gratis · Tanpa registrasi</span><a class="btn btn-primary btn-sm" href="#/tools/${t.id}">Gunakan Tools</a></div></div></article>`;
+        <div class="tool-foot"><span class="free">Gratis · Tanpa registrasi</span><a class="tool-cta" href="#/tools/${t.id}">Gunakan Tools <span class="arr" aria-hidden="true">→</span></a></div></div></article>`;
     }
     function artCard(a){
       return `<a class="art-card" href="#/artikel/${a.slug}"><div class="art-thumb">${ART_THUMB[a.thumb]()}</div>
@@ -1575,7 +1598,7 @@ collections:
       $("#home-tools").innerHTML = TOOLS.map(toolCard).join("");
       $("#home-articles").innerHTML = publishedArticles().slice(0,6).map(artCard).join("");
       const cg=$("#crop-grid");
-      if(cg) cg.innerHTML = CROPS.filter(c=>isPublished(ARTICLES.find(x=>x.slug===c.slug))).map(c=>`<a class="crop-card" href="#/artikel/${c.slug}"><span class="crop-thumb">${ART_THUMB[c.thumb]()}</span><span class="crop-body"><b>${c.name}</b><span>${c.note}</span><span class="go">Baca panduan →</span></span></a>`).join("");
+      if(cg) cg.innerHTML = CROPS.filter(c=>isPublished(ARTICLES.find(x=>x.slug===c.slug))).map(c=>`<a class="crop-card" href="#/artikel/${c.slug}"><div class="crop-thumb">${ART_THUMB[c.thumb]()}</div><div class="crop-body"><span class="crop-name">${c.name}</span><p class="crop-note">${c.note}</p><span class="go">Baca panduan →</span></div></a>`).join("");
       const sa=$("#stat-articles"); if(sa) sa.textContent = publishedArticles().length;
       $("#hero-art-slot").innerHTML = ILLUS.hero();
     }
@@ -1594,19 +1617,57 @@ collections:
       });
       return vals;
     }
+    function escAttr(s){ return String(s??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+    function errText(f){
+      if(f.type==="number"){ const m=f.min??0; return m>0 ? "Kolom ini wajib diisi dengan angka yang valid (minimal "+String(m).replace(".",",")+")." : "Kolom ini wajib diisi dengan angka yang valid (0 atau lebih)."; }
+      return "Kolom ini wajib diisi.";
+    }
+    function checkField(f, val){
+      if(f.type==="number"){ return typeof val==="number" && isFinite(val) && !isNaN(val) && val >= (f.min??0); }
+      if(f.type==="text"){ return (f.id==="produk"||f.id==="aktif") ? true : String(val??"").trim().length>0; }
+      return true;
+    }
+    function setFieldError(wrap, invalid){
+      if(!wrap) return;
+      wrap.classList.toggle("invalid", !!invalid);
+      const err=$(".err", wrap); if(err) err.hidden=!invalid;
+      const ctl=$("input, select", wrap); if(ctl) ctl.setAttribute("aria-invalid", invalid?"true":"false");
+    }
+    function validateFieldLive(tool, id){
+      const f=tool.fields.find(x=>x.id===id); if(!f) return;
+      const box=$("#calc-fields"); if(!box) return;
+      const wrap=$(`.field[data-field="${id}"]`, box); if(!wrap) return;
+      const form=$("#calc-form");
+      const submitted=form && form.dataset.submitted==="1";
+      const ctl=$("[name='"+id+"']", wrap);
+      const touched=ctl && ctl.dataset.touched==="1";
+      if(!submitted && !touched && !wrap.classList.contains("invalid")) return;
+      const vals=collectValsSafe(tool);
+      if(!fieldVisible(f, vals)){ setFieldError(wrap,false); return; }
+      setFieldError(wrap, !checkField(f, vals[id]));
+    }
     function renderFields(tool){
       const box=$("#calc-fields");
       const vals=collectValsSafe(tool);
       box.innerHTML = tool.fields.filter(f=>fieldVisible(f, vals)).map(f=>{
+        const cur=vals[f.id];
         let input="";
-        if(f.type==="number"||f.type==="text"){ input=`<input type="${f.type==="number"?"text":"text"}" inputmode="${f.type==="number"?"decimal":"text"}" name="${f.id}" value="${f.def??""}" ${f.placeholder?`placeholder="${f.placeholder}"`:""} />`; }
-        else if(f.type==="select"){ input=`<select name="${f.id}">${f.options.map(o=>`<option value="${o[0]}" ${String(o[0])===String(f.def)?"selected":""}>${o[1]}</option>`).join("")}</select>`; }
-        else if(f.type==="selectObj"){ input=`<select name="${f.id}">${RANTES().map(o=>`<option value="${o.id}" ${o.id===f.def?"selected":""}>${o.label}</option>`).join("")}</select>`; }
-        else if(f.type==="seg"){ input=`<div class="seg" role="group">${f.options.map(o=>`<button type="button" data-f="${f.id}" data-v="${o[0]}" class="${String(o[0])===String(f.def)?"on":""}">${o[1]}</button>`).join("")}</div>`; }
-        return `<div class="field" data-field="${f.id}"><label for="f-${f.id}">${f.label}</label>${input.replace('name=', 'id="f-'+f.id+'" name=')}${f.hint?`<div class="hint">${f.hint}</div>`:""}<div class="err">Kolom ini wajib diisi dengan nilai yang valid (lebih dari ${f.min??0}).</div></div>`;
+        if(f.type==="number"||f.type==="text"){
+          const v=(cur===undefined||cur===null||(typeof cur==="number"&&isNaN(cur))) ? (f.def??"") : cur;
+          input=`<input type="text" inputmode="${f.type==="number"?"decimal":"text"}" name="${f.id}" value="${escAttr(v)}" autocomplete="off" spellcheck="false" ${f.placeholder?`placeholder="${escAttr(f.placeholder)}"`:""} aria-describedby="${f.hint?("hint-"+f.id+" "):""}err-${f.id}" />`;
+        }
+        else if(f.type==="select"){ const sel=(cur===undefined||cur===null)? f.def : cur; input=`<select name="${f.id}" aria-describedby="${f.hint?("hint-"+f.id+" "):""}err-${f.id}">${f.options.map(o=>`<option value="${escAttr(o[0])}" ${String(o[0])===String(sel)?"selected":""}>${o[1]}</option>`).join("")}</select>`; }
+        else if(f.type==="selectObj"){ const sel=(cur===undefined||cur===null)? f.def : cur; input=`<select name="${f.id}" aria-describedby="${f.hint?("hint-"+f.id+" "):""}err-${f.id}">${RANTES().map(o=>`<option value="${escAttr(o.id)}" ${String(o.id)===String(sel)?"selected":""}>${o.label}</option>`).join("")}</select>`; }
+        else if(f.type==="seg"){ const sel=(cur===undefined||cur===null)? f.def : cur; input=`<div class="seg" role="group" aria-label="${escAttr(f.label)}">${f.options.map(o=>`<button type="button" data-f="${f.id}" data-v="${escAttr(o[0])}" class="${String(o[0])===String(sel)?"on":""}">${o[1]}</button>`).join("")}</div>`; }
+        return `<div class="field" data-field="${f.id}"><label for="f-${f.id}">${f.label}</label>${input.replace('name=', 'id="f-'+f.id+'" name=')}${f.hint?`<div class="hint" id="hint-${f.id}">${f.hint}</div>`:""}<div class="err" id="err-${f.id}" role="alert" hidden>${errText(f)}</div></div>`;
       }).join("");
       // seg buttons
       $$(".seg button", box).forEach(b=>b.addEventListener("click",()=>{ $$(`.seg button[data-f="${b.dataset.f}"]`,box).forEach(x=>x.classList.remove("on")); b.classList.add("on"); renderFields(tool); }));
+      // live validation: error hanya tampil setelah submit / field disentuh, dan hilang begitu valid
+      $$("select, input", box).forEach(el=>{
+        el.addEventListener("input",()=>validateFieldLive(tool, el.name));
+        el.addEventListener("blur",()=>{ el.dataset.touched="1"; validateFieldLive(tool, el.name); });
+      });
       // change listeners: pupuk auto-dose, showIf refresh
       $$("select, input", box).forEach(el=>el.addEventListener("change",()=>{
         if(tool.id==="pupuk" && (el.name==="tanaman"||el.name==="pupuk")){
@@ -1614,6 +1675,7 @@ collections:
           const dEl=$("[name='dosis']",box); if(rec && dEl){ dEl.value=rec; toast("Dosis rekomendasi "+TANAMAN_LABEL[v.tanaman]+" — "+PUPUK_LABEL[v.pupuk]+": "+rec+" kg/ha"); }
         }
         renderFieldsSoft(tool);
+        validateFieldLive(tool, el.name);
       }));
     }
     function RANTES(){ return RANTE_STANDAR; }
@@ -1655,6 +1717,8 @@ collections:
         : tool.id==="pupuk"
         ? `<div class="note-box note-info"><b>Rekomendasi spesifik lokasi</b>Dosis terisi otomatis dari kisaran rekomendasi per tanaman. Sesuaikan dengan hasil uji tanah (PUTS/PUTK) atau anjuran penyuluh setempat.</div>`
         : "";
+      const fb=$("#calc-fields"); if(fb) fb.innerHTML="";
+      const cf=$("#calc-form"); if(cf) delete cf.dataset.submitted;
       renderFields(tool);
       $("#calc-result").innerHTML=`<div class="result-empty"><div class="big" aria-hidden="true">🌾</div>Belum ada hasil.<br/>Isi formulir di samping, lalu tekan <b>Hitung Sekarang</b>.</div>`;
       renderHistory();
@@ -1663,17 +1727,16 @@ collections:
     function runCalc(e){
       e.preventDefault(); if(!currentTool) return;
       const tool=currentTool, vals=collectValsSafe(tool);
-      let ok=true;
+      const form=$("#calc-form"); if(form) form.dataset.submitted="1";
+      let ok=true, firstBad=null;
       tool.fields.forEach(f=>{
         if(!fieldVisible(f, vals)) return;
         const wrap=$(`.field[data-field="${f.id}"]`, $("#calc-fields"));
-        let valid=true;
-        if(f.type==="number"){ valid = !isNaN(vals[f.id]) && vals[f.id] >= (f.min??-Infinity) && (f.min===0 ? vals[f.id]>=0 : vals[f.id] > (f.min===undefined? -Infinity : (f.min>0? 0 : -Infinity)) || vals[f.id] >= f.min); if(f.min!==undefined) valid = !isNaN(vals[f.id]) && vals[f.id] >= f.min && (f.min>0 ? vals[f.id]>0 || f.min===0 : true); if(f.min>0) valid = !isNaN(vals[f.id]) && vals[f.id]>=f.min; }
-        if(f.type==="text" && f.id!=="produk" && f.id!=="aktif"){ valid = String(vals[f.id]||"").trim().length>0; }
-        if(wrap){ wrap.classList.toggle("invalid", !valid); }
-        if(!valid) ok=false;
+        const valid=checkField(f, vals[f.id]);
+        setFieldError(wrap, !valid);
+        if(!valid){ ok=false; if(!firstBad) firstBad=wrap; }
       });
-      if(!ok){ toast("Periksa kembali kolom yang ditandai merah."); return; }
+      if(!ok){ toast("Periksa kembali kolom yang ditandai merah."); if(firstBad){ const ctl=$("input, select", firstBad); if(ctl) ctl.focus(); } return; }
       const res=tool.compute(vals);
       currentResult={tool, vals, res, time:new Date()};
       history.unshift(currentResult); if(history.length>8) history.pop();
@@ -2090,7 +2153,7 @@ collections:
       $("#tools-search").addEventListener("submit",e=>e.preventDefault());
       // Calculator form
       $("#calc-form").addEventListener("submit", runCalc);
-      $("#calc-reset").addEventListener("click",()=>{ if(currentTool){ renderFields(currentTool); $("#calc-result").innerHTML=`<div class="result-empty"><div class="big" aria-hidden="true">🌾</div>Formulir direset.<br/>Isi kembali data Anda, lalu tekan <b>Hitung Sekarang</b>.</div>`; currentResult=null; } });
+      $("#calc-reset").addEventListener("click",()=>{ if(currentTool){ const cf2=$("#calc-form"); if(cf2) delete cf2.dataset.submitted; renderFields(currentTool); $("#calc-result").innerHTML=`<div class="result-empty"><div class="big" aria-hidden="true">🌾</div>Formulir direset.<br/>Isi kembali data Anda, lalu tekan <b>Hitung Sekarang</b>.</div>`; currentResult=null; } });
       window.addEventListener("hashchange", route);
       route();
     });
