@@ -6,6 +6,8 @@ Platform tools pertanian Indonesia: kalkulator kebutuhan benih padi, kebutuhan p
 
 Dibangun oleh **Renaldo Sinaga & Team Vexora** · Kontak: renaldosinaga98@gmail.com
 
+**Domain final: https://petanibijakindonesia.click** (Cloudflare Pages + custom domain)
+
 ## Stack
 
 - **Astro 5** + TypeScript — output statis (SSG), kalkulator berjalan client-side di browser
@@ -48,6 +50,13 @@ Hubungkan repo ini di dashboard Cloudflare Pages dengan pengaturan:
 | Framework preset | Astro |
 
 Setiap push ke `main` memicu build & deploy ulang secara otomatis.
+
+### Domain final: petanibijakindonesia.click (jalur Cloudflare)
+
+1. Tambahkan domain `petanibijakindonesia.click` sebagai situs di Cloudflare (paket Free).
+2. Ganti nameserver domain di registrar (Sav.com) dari `ns1/ns2-coming-soon.sav.com` ke dua nameserver yang diberikan Cloudflare, lalu tunggu propagasi.
+3. Di project Cloudflare Pages ini: **Settings → Custom domains → Set up a domain** → `petanibijakindonesia.click` (tambahkan juga `www` bila diinginkan, arahkan ke root). Cloudflare membuat record DNS-nya otomatis karena domain berada di Cloudflare.
+4. `astro.config.mjs` sudah mengatur `site: https://petanibijakindonesia.click` untuk build produksi, sehingga canonical & sitemap (`/sitemap-index.xml`, dirujuk dari `robots.txt`) otomatis memakai domain final.
 
 ## Struktur proyek
 

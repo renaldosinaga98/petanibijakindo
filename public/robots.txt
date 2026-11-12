@@ -2,5 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-# Tambahkan baris Sitemap setelah domain final aktif, contoh:
-# Sitemap: https://petanibijakindo.pages.dev/sitemap-index.xml
+Sitemap: https://petanibijakindonesia.click/sitemap-index.xml

@@ -11,8 +11,8 @@ publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://github.com/renaldosinaga98/petanibijakindo
-display_url: https://github.com/renaldosinaga98/petanibijakindo
+site_url: https://petanibijakindonesia.click
+display_url: https://petanibijakindonesia.click
 
 slug:
   encoding: "ascii"
