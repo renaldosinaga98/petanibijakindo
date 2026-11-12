@@ -1,0 +1,1 @@
+{"compilerOptions":{"baseUrl":"."},"exclude":["dist"],"extends":"astro/tsconfigs/strict"}

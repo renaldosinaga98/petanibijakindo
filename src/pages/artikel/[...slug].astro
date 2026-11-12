@@ -1,0 +1,109 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('artikel', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, category, author, pubDate, readTime } = post.data;
+const tanggal = pubDate.toLocaleDateString('id-ID', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Petani Bijak Indonesia</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --forest: #174b35;
+        --agri: #328653;
+        --lime: #a4c96b;
+        --cream: #f8f7ef;
+        --dark: #202c24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--cream);
+        color: var(--dark);
+        line-height: 1.75;
+      }
+      header {
+        background: var(--forest);
+        padding: 16px 20px;
+      }
+      header a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+      header a span { color: var(--lime); }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 20px 64px;
+      }
+      .cat {
+        display: inline-block;
+        background: var(--lime);
+        color: var(--forest);
+        font-weight: 700;
+        font-size: 13px;
+        padding: 4px 12px;
+        border-radius: 999px;
+      }
+      h1 { line-height: 1.25; color: var(--forest); margin: 16px 0 8px; }
+      .meta { color: #5a6a5e; font-size: 14px; margin-bottom: 28px; }
+      article h2 { color: var(--forest); margin-top: 32px; }
+      article a { color: var(--agri); }
+      .back { display: inline-block; margin-top: 40px; color: var(--agri); font-weight: 700; }
+      footer {
+        border-top: 1px solid #e3e6da;
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #5a6a5e;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">🌱 Petani <span>Bijak</span> Indonesia</a>
+    </header>
+    <main>
+      <span class="cat">{category}</span>
+      <h1>{title}</h1>
+      <p class="meta">
+        Oleh {author} · {tanggal}{readTime ? ` · ${readTime}` : ''}
+      </p>
+      <article>
+        <Content />
+      </article>
+      <a class="back" href="/#artikel">← Kembali ke daftar artikel</a>
+    </main>
+    <footer>
+      Petani Bijak Indonesia — Petani Cerdas, Hasil Berkualitas. · Team Vexora
+    </footer>
+  </body>
+</html>
