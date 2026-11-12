@@ -2,6 +2,17 @@
 <html lang="id">
   <head>
     <meta charset="utf-8" />
+    <script>
+      /* Fallback SPA (pola spa-github-pages): file 404.html eksternal mengarahkan
+         URL bersih menjadi "?/<path>" — dekode kembali ke path bersih paling awal,
+         sebelum halaman dirender. "~and~" adalah pelolos karakter "&". */
+      (function(l){
+        if(l.search[1]==="/"){
+          var decoded=l.search.slice(1).split("&").map(function(s){ return s.replace(/~and~/g,"&"); }).join("?");
+          window.history.replaceState(null,"",l.pathname.slice(0,-1)+decoded+l.hash);
+        }
+      })(window.location);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="data:," />
@@ -29,15 +40,15 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
       {"@type":"Organization","@id":"#org","name":"Petani Bijak Indonesia","alternateName":["Petani Bijak","petanibijakindonesia.click"],"slogan":"Petani Cerdas, Hasil Berkualitas","description":"Petani Bijak Indonesia (petanibijakindonesia.click) — platform kalkulator pertanian online gratis dan panduan budidaya untuk petani Indonesia: benih padi, pupuk per tanaman, luas lahan, hektare ke rante, biaya tanam, keuntungan panen, dan dosis pestisida.","url":"https://petanibijakindonesia.click/","logo":"https://petanibijakindonesia.click/","email":"renaldosinaga98@gmail.com","founder":{"@type":"Person","name":"Renaldo Sinaga","email":"renaldosinaga98@gmail.com","jobTitle":"Pendiri & Pengelola"},"memberOf":{"@type":"Organization","name":"Team Vexora"},"knowsAbout":["Kalkulator pertanian","Budidaya cabai merah","Budidaya terong","Budidaya pare","Budidaya semangka","Budidaya melon","Budidaya padi","Budidaya jagung","Pemupukan berimbang","Pengendalian hama terpadu","Manajemen usaha tani"]},
-      {"@type":"WebSite","@id":"#site","name":"Petani Bijak Indonesia","url":"https://petanibijakindonesia.click/","inLanguage":"id-ID","publisher":{"@id":"#org"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://petanibijakindonesia.click/#/tools?q={search_term_string}"},"query-input":"required name=search_term_string"}},
+      {"@type":"WebSite","@id":"#site","name":"Petani Bijak Indonesia","url":"https://petanibijakindonesia.click/","inLanguage":"id-ID","publisher":{"@id":"#org"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://petanibijakindonesia.click/tools?q={search_term_string}"},"query-input":"required name=search_term_string"}},
       {"@type":"ItemList","name":"Kalkulator Pertanian Online Gratis","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Kalkulator Kebutuhan Benih Padi","url":"https://petanibijakindonesia.click/#/tools/benih"},
-        {"@type":"ListItem","position":2,"name":"Kalkulator Kebutuhan Pupuk","url":"https://petanibijakindonesia.click/#/tools/pupuk"},
-        {"@type":"ListItem","position":3,"name":"Kalkulator Luas Lahan","url":"https://petanibijakindonesia.click/#/tools/luas"},
-        {"@type":"ListItem","position":4,"name":"Konversi Hektare ke Rante","url":"https://petanibijakindonesia.click/#/tools/rante"},
-        {"@type":"ListItem","position":5,"name":"Kalkulator Biaya Tanam","url":"https://petanibijakindonesia.click/#/tools/biaya"},
-        {"@type":"ListItem","position":6,"name":"Kalkulator Keuntungan Panen","url":"https://petanibijakindonesia.click/#/tools/untung"},
-        {"@type":"ListItem","position":7,"name":"Kalkulator Dosis Pestisida","url":"https://petanibijakindonesia.click/#/tools/pestisida"}]},
+        {"@type":"ListItem","position":1,"name":"Kalkulator Kebutuhan Benih Padi","url":"https://petanibijakindonesia.click/tools/benih"},
+        {"@type":"ListItem","position":2,"name":"Kalkulator Kebutuhan Pupuk","url":"https://petanibijakindonesia.click/tools/pupuk"},
+        {"@type":"ListItem","position":3,"name":"Kalkulator Luas Lahan","url":"https://petanibijakindonesia.click/tools/luas"},
+        {"@type":"ListItem","position":4,"name":"Konversi Hektare ke Rante","url":"https://petanibijakindonesia.click/tools/rante"},
+        {"@type":"ListItem","position":5,"name":"Kalkulator Biaya Tanam","url":"https://petanibijakindonesia.click/tools/biaya"},
+        {"@type":"ListItem","position":6,"name":"Kalkulator Keuntungan Panen","url":"https://petanibijakindonesia.click/tools/untung"},
+        {"@type":"ListItem","position":7,"name":"Kalkulator Dosis Pestisida","url":"https://petanibijakindonesia.click/tools/pestisida"}]},
       {"@type":"FAQPage","mainEntity":[
         {"@type":"Question","name":"Apakah kalkulator pertanian di Petani Bijak Indonesia gratis?","acceptedAnswer":{"@type":"Answer","text":"Ya. Seluruh kalkulator — benih padi, pupuk, luas lahan, konversi hektare ke rante, biaya tanam, keuntungan panen, dan dosis pestisida — gratis dan dapat digunakan tanpa registrasi, langsung di browser."}},
         {"@type":"Question","name":"Berapa kebutuhan benih padi untuk 1 hektare?","acceptedAnswer":{"@type":"Answer","text":"Untuk tanam pindah umumnya 20–25 kg/ha, jajar legowo 2:1 sekitar 25–30 kg/ha, dan tabela 40–60 kg/ha. Tambahkan cadangan penyulaman 5–15%. Angka pastinya dapat dihitung dengan Kalkulator Kebutuhan Benih Padi."}},
@@ -387,18 +398,18 @@
     <header class="site">
       <div class="wrap">
         <div class="nav">
-          <a class="brand" href="#/" aria-label="Petani Bijak Indonesia — Beranda">
+          <a class="brand" href="/" aria-label="Petani Bijak Indonesia — Beranda">
             <span class="logo-badge" aria-hidden="true">
               <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 42c0-10 0-16 0-24" stroke="#A4C96B" stroke-width="3" stroke-linecap="round"/><path d="M24 22c-6 0-11-4-12-11 6 0 11 4 12 11Z" fill="#A4C96B"/><path d="M24 17c1-5 5-9 11-10-1 6-5 10-11 10Z" fill="#fff" opacity=".9"/><ellipse cx="17" cy="12" rx="2.2" ry="3.4" fill="#F3D98B" transform="rotate(-24 17 12)"/><ellipse cx="31" cy="9" rx="2.2" ry="3.4" fill="#F3D98B" transform="rotate(20 31 9)"/><circle cx="38" cy="34" r="2.4" fill="#A4C96B"/><circle cx="42" cy="27" r="1.6" fill="#A4C96B" opacity=".7"/><path d="M36 36h6M39 33v6" stroke="#A4C96B" stroke-width="0" /></svg>
             </span>
             <span><b>Petani Bijak Indonesia</b><small>Petani Cerdas, Hasil Berkualitas</small></span>
           </a>
           <nav class="main" aria-label="Navigasi utama">
-            <a href="#/" data-nav="home">Beranda</a>
-            <a href="#/tools" data-nav="tools">Semua Tools</a>
-            <a href="#/artikel" data-nav="artikel">Panduan &amp; Artikel</a>
-            <a href="#/tentang" data-nav="tentang">Tentang Kami</a>
-            <a href="#/kontak" data-nav="kontak">Kontak</a>
+            <a href="/" data-nav="home">Beranda</a>
+            <a href="/tools" data-nav="tools">Semua Tools</a>
+            <a href="/artikel" data-nav="artikel">Panduan &amp; Artikel</a>
+            <a href="/tentang" data-nav="tentang">Tentang Kami</a>
+            <a href="/kontak" data-nav="kontak">Kontak</a>
           </nav>
           <div class="nav-actions">
             <button class="icon-btn" id="btn-search" aria-label="Cari tools">
@@ -413,12 +424,12 @@
           </div>
         </div>
         <div class="mobile-menu" id="mobile-menu">
-          <a href="#/">Beranda</a>
-          <a href="#/tools">Semua Tools</a>
-          <a href="#/artikel">Panduan &amp; Artikel</a>
-          <a href="#/tentang">Tentang Kami</a>
-          <a href="#/kelola">Kelola Konten (CMS)</a>
-          <a href="#/kontak">Kontak</a>
+          <a href="/">Beranda</a>
+          <a href="/tools">Semua Tools</a>
+          <a href="/artikel">Panduan &amp; Artikel</a>
+          <a href="/tentang">Tentang Kami</a>
+          <a href="/kelola">Kelola Konten (CMS)</a>
+          <a href="/kontak">Kontak</a>
         </div>
       </div>
     </header>
@@ -444,9 +455,9 @@
                   <div class="search-results" id="hero-search-results" hidden></div>
                 </form>
                 <div class="hero-cta">
-                  <a class="btn btn-primary" href="#/tools">Jelajahi Tools
+                  <a class="btn btn-primary" href="/tools">Jelajahi Tools
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-                  <a class="btn btn-ghost" href="#/artikel">Baca Panduan</a>
+                  <a class="btn btn-ghost" href="/artikel">Baca Panduan</a>
                 </div>
                 <div class="stats">
                   <div class="stat"><b>7</b><span>Kalkulator berfungsi penuh</span></div>
@@ -485,7 +496,7 @@
             <div class="sec-head">
               <div><div class="kicker">Tools Populer</div><h2>Kalkulator pertanian yang benar-benar bekerja</h2>
               <p>Setiap kalkulator berjalan langsung di browser Anda — isi angka lahan Anda, hasil muncul seketika lengkap dengan salin, unduh PDF, dan riwayat sesi.</p></div>
-              <a class="btn btn-ghost btn-sm" href="#/tools">Lihat Semua Tools</a>
+              <a class="btn btn-ghost btn-sm" href="/tools">Lihat Semua Tools</a>
             </div>
             <div class="tool-grid" id="home-tools"></div>
           </div>
@@ -510,7 +521,7 @@
             <div class="sec-head">
               <div><div class="kicker">Panduan per Komoditas</div><h2>Budidaya semua jenis tanaman, satu per satu</h2>
               <p>Panduan bergambar untuk hortikultura prioritas — cabai, terong, pare, semangka, dan melon — serta tanaman pangan, buah, dan perkebunan. Klik komoditas untuk membaca panduan lengkapnya.</p></div>
-              <a class="btn btn-ghost btn-sm" href="#/artikel">Semua Panduan</a>
+              <a class="btn btn-ghost btn-sm" href="/artikel">Semua Panduan</a>
             </div>
             <div class="crop-grid" id="crop-grid"></div>
           </div>
@@ -521,7 +532,7 @@
             <div class="sec-head">
               <div><div class="kicker">Artikel Terbaru</div><h2>Panduan budidaya dari lapangan</h2>
               <p>Setiap artikel mencantumkan penulis, tanggal, dan referensi resmi — ditulis untuk membantu keputusan di lahan, bukan sekadar bacaan.</p></div>
-              <a class="btn btn-ghost btn-sm" href="#/artikel">Semua Artikel</a>
+              <a class="btn btn-ghost btn-sm" href="/artikel">Semua Artikel</a>
             </div>
             <div class="art-grid" id="home-articles"></div>
           </div>
@@ -549,16 +560,16 @@
             <div class="faq-list">
               <details class="faq-item"><summary>Apakah kalkulator pertanian di Petani Bijak Indonesia gratis?</summary><div class="faq-a"><p>Ya, 100% gratis dan tanpa registrasi di situs resmi <b>petanibijakindonesia.click</b>. Semua perhitungan — benih padi, pupuk, luas lahan, konversi hektare ke rante, biaya tanam, keuntungan panen, dan dosis pestisida — berjalan langsung di browser Anda, dan hasilnya dapat disalin, dibagikan, atau diunduh sebagai laporan PDF berdesain.</p></div></details>
               <details class="faq-item"><summary>Apa itu Petani Bijak Indonesia di petanibijakindonesia.click?</summary><div class="faq-a"><p>Petani Bijak Indonesia adalah platform kalkulator pertanian online dan panduan budidaya di alamat resmi petanibijakindonesia.click — nama situsnya sama persis dengan nama brand-nya. Platform ini dikelola Renaldo Sinaga bersama Team Vexora dengan tagline “Petani Cerdas, Hasil Berkualitas”, dan seluruh tools-nya gratis tanpa registrasi.</p></div></details>
-              <details class="faq-item"><summary>Berapa kebutuhan benih padi untuk lahan 1 hektare?</summary><div class="faq-a"><p>Tanam pindah umumnya 20–25 kg/ha, jajar legowo 2:1 sekitar 25–30 kg/ha karena populasi tanaman bertambah, dan tabela (tebar langsung) 40–60 kg/ha. Tambahkan cadangan penyulaman 5–15%. Hitung angka persis lahan Anda di <a href="#/tools/benih">Kalkulator Kebutuhan Benih Padi</a>.</p></div></details>
-              <details class="faq-item"><summary>Berapa dosis pupuk untuk cabai, terong, dan sayuran lainnya?</summary><div class="faq-a"><p>Sebagai titik awal, cabai merah umumnya membutuhkan NPK sekitar 400 kg/ha ditambah Urea, SP-36, dan KCl bertahap serta pupuk organik 2–3 ton/ha; terong dan pare berada di kisaran serupa dengan penyesuaian fase generatif. Di <a href="#/tools/pupuk">Kalkulator Kebutuhan Pupuk</a>, dosis rekomendasi terisi otomatis per jenis tanaman — termasuk semangka, melon, tomat, dan kentang — dan tetap bisa Anda sesuaikan dengan hasil uji tanah.</p></div></details>
-              <details class="faq-item"><summary>1 rante itu berapa meter persegi?</summary><div class="faq-a"><p>Bergantung daerah: Sumatera Utara dan Aceh umumnya 400 m² (20 m × 20 m), standar rantai ukur 404,69 m², dan sebagian daerah memakai ukuran lain. Gunakan <a href="#/tools/rante">Konversi Hektare ke Rante</a> dan pilih standar wilayah Anda sebelum bertransaksi lahan.</p></div></details>
-              <details class="faq-item"><summary>Bagaimana cara menghitung keuntungan panen dan titik impas (BEP)?</summary><div class="faq-a"><p>Keuntungan bersih = (total hasil × harga jual) − total biaya produksi. BEP volume = total biaya ÷ harga per kg, BEP harga = total biaya ÷ total hasil. Susun biaya dulu di <a href="#/tools/biaya">Kalkulator Biaya Tanam</a>, lalu simulasikan hasilnya di <a href="#/tools/untung">Kalkulator Keuntungan Panen</a> lengkap dengan grafiknya.</p></div></details>
-              <details class="faq-item"><summary>Kapan sebaiknya menanam semangka dan melon agar hasil maksimal?</summary><div class="faq-a"><p>Semangka dan melon paling aman ditanam menjelang akhir musim hujan menuju kemarau: buah mendapat cahaya penuh, risiko penyakit jamur rendah, dan kadar gula lebih tinggi. Keduanya butuh drainase sempurna dan mulsa plastik. Baca panduan lengkapnya: <a href="#/artikel/budidaya-semangka">Budidaya Semangka</a> dan <a href="#/artikel/budidaya-melon">Budidaya Melon</a>.</p></div></details>
-              <details class="faq-item"><summary>Apakah dosis pestisida di situs ini aman diikuti?</summary><div class="faq-a"><p>Kalkulator kami tidak menetapkan dosis — dosis selalu berasal dari label resmi produk yang Anda masukkan sendiri, sesuai prinsip Pengendalian Hama Terpadu. Selalu gunakan APD lengkap, jangan melebihi dosis label, dan patuhi masa henti sebelum panen. Detailnya ada di <a href="#/tools/pestisida">Kalkulator Dosis Pestisida</a> dan artikel <a href="#/artikel/pengendalian-hama-terpadu">Pengendalian Hama Terpadu</a>.</p></div></details>
-              <details class="faq-item"><summary>Berapa dosis pupuk per tanaman untuk cabai, terong, pare, semangka, melon, tomat, mentimun, bawang merah, dan kentang?</summary><div class="faq-a"><p>Setiap tanaman berbeda: cabai merah, terong, melon, dan kentang umumnya memakai NPK sekitar 400 kg/ha; pare, semangka, dan tomat sekitar 350 kg/ha; mentimun dan bawang merah sekitar 300 kg/ha — ditambah Urea, SP-36, KCl, dan pupuk organik sesuai fase tumbuh. Di <a href="#/tools/pupuk">Kalkulator Kebutuhan Pupuk</a> Petani Bijak Indonesia, dosis rekomendasi terisi otomatis begitu Anda memilih jenis tanamannya, dan tetap dapat disesuaikan dengan hasil uji tanah.</p></div></details>
-              <details class="faq-item"><summary>Bagaimana cara memakai kalkulator luas lahan di Petani Bijak Indonesia?</summary><div class="faq-a"><p>Pilih bentuk lahan Anda — persegi, persegi panjang, segitiga, atau trapesium — lalu masukkan ukuran sisinya dalam meter. <a href="#/tools/luas">Kalkulator Luas Lahan</a> di petanibijakindonesia.click langsung menampilkan hasilnya dalam meter persegi, hektare, dan rante sesuai standar wilayah yang Anda pilih.</p></div></details>
-              <details class="faq-item"><summary>Bagaimana cara menghitung biaya tanam dengan kalkulator biaya tanam?</summary><div class="faq-a"><p>Masukkan biaya benih, pupuk, pestisida, tenaga kerja, pengolahan tanah, transportasi, dan biaya tambahan untuk satu musim tanam. <a href="#/tools/biaya">Kalkulator Biaya Tanam</a> menjumlahkan total biaya produksi serta biaya per hektare — angka totalnya dapat langsung Anda pakai sebagai biaya produksi di <a href="#/tools/untung">Kalkulator Keuntungan Panen</a> untuk melihat BEP usaha tani Anda.</p></div></details>
-              <details class="faq-item"><summary>Bagaimana cara memakai kalkulator kebutuhan benih padi di Petani Bijak Indonesia?</summary><div class="faq-a"><p>Masukkan luas lahan dan satuannya, kebutuhan benih per hektare, metode tanam (tanam pindah, jajar legowo, tabela, atau dapog), dan ukuran kemasan. <a href="#/tools/benih">Kalkulator Kebutuhan Benih Padi</a> di petanibijakindonesia.click menghitung total benih termasuk cadangan penyulaman, jumlah kemasan yang perlu dibeli, dan hasilnya dapat diunduh sebagai laporan PDF.</p></div></details>
+              <details class="faq-item"><summary>Berapa kebutuhan benih padi untuk lahan 1 hektare?</summary><div class="faq-a"><p>Tanam pindah umumnya 20–25 kg/ha, jajar legowo 2:1 sekitar 25–30 kg/ha karena populasi tanaman bertambah, dan tabela (tebar langsung) 40–60 kg/ha. Tambahkan cadangan penyulaman 5–15%. Hitung angka persis lahan Anda di <a href="/tools/benih">Kalkulator Kebutuhan Benih Padi</a>.</p></div></details>
+              <details class="faq-item"><summary>Berapa dosis pupuk untuk cabai, terong, dan sayuran lainnya?</summary><div class="faq-a"><p>Sebagai titik awal, cabai merah umumnya membutuhkan NPK sekitar 400 kg/ha ditambah Urea, SP-36, dan KCl bertahap serta pupuk organik 2–3 ton/ha; terong dan pare berada di kisaran serupa dengan penyesuaian fase generatif. Di <a href="/tools/pupuk">Kalkulator Kebutuhan Pupuk</a>, dosis rekomendasi terisi otomatis per jenis tanaman — termasuk semangka, melon, tomat, dan kentang — dan tetap bisa Anda sesuaikan dengan hasil uji tanah.</p></div></details>
+              <details class="faq-item"><summary>1 rante itu berapa meter persegi?</summary><div class="faq-a"><p>Bergantung daerah: Sumatera Utara dan Aceh umumnya 400 m² (20 m × 20 m), standar rantai ukur 404,69 m², dan sebagian daerah memakai ukuran lain. Gunakan <a href="/tools/rante">Konversi Hektare ke Rante</a> dan pilih standar wilayah Anda sebelum bertransaksi lahan.</p></div></details>
+              <details class="faq-item"><summary>Bagaimana cara menghitung keuntungan panen dan titik impas (BEP)?</summary><div class="faq-a"><p>Keuntungan bersih = (total hasil × harga jual) − total biaya produksi. BEP volume = total biaya ÷ harga per kg, BEP harga = total biaya ÷ total hasil. Susun biaya dulu di <a href="/tools/biaya">Kalkulator Biaya Tanam</a>, lalu simulasikan hasilnya di <a href="/tools/untung">Kalkulator Keuntungan Panen</a> lengkap dengan grafiknya.</p></div></details>
+              <details class="faq-item"><summary>Kapan sebaiknya menanam semangka dan melon agar hasil maksimal?</summary><div class="faq-a"><p>Semangka dan melon paling aman ditanam menjelang akhir musim hujan menuju kemarau: buah mendapat cahaya penuh, risiko penyakit jamur rendah, dan kadar gula lebih tinggi. Keduanya butuh drainase sempurna dan mulsa plastik. Baca panduan lengkapnya: <a href="/artikel/budidaya-semangka">Budidaya Semangka</a> dan <a href="/artikel/budidaya-melon">Budidaya Melon</a>.</p></div></details>
+              <details class="faq-item"><summary>Apakah dosis pestisida di situs ini aman diikuti?</summary><div class="faq-a"><p>Kalkulator kami tidak menetapkan dosis — dosis selalu berasal dari label resmi produk yang Anda masukkan sendiri, sesuai prinsip Pengendalian Hama Terpadu. Selalu gunakan APD lengkap, jangan melebihi dosis label, dan patuhi masa henti sebelum panen. Detailnya ada di <a href="/tools/pestisida">Kalkulator Dosis Pestisida</a> dan artikel <a href="/artikel/pengendalian-hama-terpadu">Pengendalian Hama Terpadu</a>.</p></div></details>
+              <details class="faq-item"><summary>Berapa dosis pupuk per tanaman untuk cabai, terong, pare, semangka, melon, tomat, mentimun, bawang merah, dan kentang?</summary><div class="faq-a"><p>Setiap tanaman berbeda: cabai merah, terong, melon, dan kentang umumnya memakai NPK sekitar 400 kg/ha; pare, semangka, dan tomat sekitar 350 kg/ha; mentimun dan bawang merah sekitar 300 kg/ha — ditambah Urea, SP-36, KCl, dan pupuk organik sesuai fase tumbuh. Di <a href="/tools/pupuk">Kalkulator Kebutuhan Pupuk</a> Petani Bijak Indonesia, dosis rekomendasi terisi otomatis begitu Anda memilih jenis tanamannya, dan tetap dapat disesuaikan dengan hasil uji tanah.</p></div></details>
+              <details class="faq-item"><summary>Bagaimana cara memakai kalkulator luas lahan di Petani Bijak Indonesia?</summary><div class="faq-a"><p>Pilih bentuk lahan Anda — persegi, persegi panjang, segitiga, atau trapesium — lalu masukkan ukuran sisinya dalam meter. <a href="/tools/luas">Kalkulator Luas Lahan</a> di petanibijakindonesia.click langsung menampilkan hasilnya dalam meter persegi, hektare, dan rante sesuai standar wilayah yang Anda pilih.</p></div></details>
+              <details class="faq-item"><summary>Bagaimana cara menghitung biaya tanam dengan kalkulator biaya tanam?</summary><div class="faq-a"><p>Masukkan biaya benih, pupuk, pestisida, tenaga kerja, pengolahan tanah, transportasi, dan biaya tambahan untuk satu musim tanam. <a href="/tools/biaya">Kalkulator Biaya Tanam</a> menjumlahkan total biaya produksi serta biaya per hektare — angka totalnya dapat langsung Anda pakai sebagai biaya produksi di <a href="/tools/untung">Kalkulator Keuntungan Panen</a> untuk melihat BEP usaha tani Anda.</p></div></details>
+              <details class="faq-item"><summary>Bagaimana cara memakai kalkulator kebutuhan benih padi di Petani Bijak Indonesia?</summary><div class="faq-a"><p>Masukkan luas lahan dan satuannya, kebutuhan benih per hektare, metode tanam (tanam pindah, jajar legowo, tabela, atau dapog), dan ukuran kemasan. <a href="/tools/benih">Kalkulator Kebutuhan Benih Padi</a> di petanibijakindonesia.click menghitung total benih termasuk cadangan penyulaman, jumlah kemasan yang perlu dibeli, dan hasilnya dapat diunduh sebagai laporan PDF.</p></div></details>
             </div>
           </div>
         </section>
@@ -567,7 +578,7 @@
       <!-- ================= TOOLS LIST ================= -->
       <div class="view" id="view-tools">
         <div class="wrap">
-          <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Semua Tools</span></div>
+          <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Semua Tools</span></div>
           <div class="calc-head" style="grid-template-columns:1fr">
             <div><h1>Semua Tools Pertanian</h1>
             <p>Tujuh kalkulator gratis untuk petani padi, jagung, sayuran, dan perkebunan. Gunakan kolom pencarian untuk menemukan tools lebih cepat.</p></div>
@@ -585,7 +596,7 @@
       <!-- ================= CALCULATOR ================= -->
       <div class="view" id="view-calc">
         <div class="wrap">
-          <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <a href="#/tools">Semua Tools</a> <span>›</span> <span id="calc-crumb-name">Kalkulator</span></div>
+          <div class="crumb"><a href="/">Beranda</a> <span>›</span> <a href="/tools">Semua Tools</a> <span>›</span> <span id="calc-crumb-name">Kalkulator</span></div>
           <div class="calc-head">
             <div><h1 id="calc-title">Kalkulator</h1><p id="calc-desc"></p></div>
             <div class="art" id="calc-art"></div>
@@ -619,7 +630,7 @@
       <!-- ================= ARTICLES LIST ================= -->
       <div class="view" id="view-articles">
         <div class="wrap">
-          <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Panduan &amp; Artikel</span></div>
+          <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Panduan &amp; Artikel</span></div>
           <div class="calc-head" style="grid-template-columns:1fr">
             <div><h1>Panduan &amp; Artikel Pertanian</h1>
             <p>Portal informasi budidaya lengkap: cabai merah, terong, pare, semangka, melon, tomat, bawang merah, mentimun, kentang, sayuran daun, padi, jagung, palawija, pisang, jeruk, kopi, dan kelapa sawit — plus pemupukan, pengendalian hama &amp; penyakit, teknologi pertanian, dan manajemen usaha tani.</p></div>
@@ -655,20 +666,20 @@
           </div>
           <div>
             <h4>Jelajahi</h4>
-            <a href="#/artikel">Panduan &amp; Artikel</a>
-            <a href="#/artikel/budidaya-cabai-merah">Budidaya Cabai Merah</a>
-            <a href="#/artikel/budidaya-semangka">Budidaya Semangka</a>
-            <a href="#/artikel/budidaya-melon">Budidaya Melon</a>
-            <a href="#/artikel/budidaya-terong">Budidaya Terong</a>
-            <a href="#/artikel/budidaya-pare">Budidaya Pare</a>
-            <a href="#/tentang">Tentang Kami</a>
-            <a href="#/kontak">Kontak</a>
+            <a href="/artikel">Panduan &amp; Artikel</a>
+            <a href="/artikel/budidaya-cabai-merah">Budidaya Cabai Merah</a>
+            <a href="/artikel/budidaya-semangka">Budidaya Semangka</a>
+            <a href="/artikel/budidaya-melon">Budidaya Melon</a>
+            <a href="/artikel/budidaya-terong">Budidaya Terong</a>
+            <a href="/artikel/budidaya-pare">Budidaya Pare</a>
+            <a href="/tentang">Tentang Kami</a>
+            <a href="/kontak">Kontak</a>
           </div>
           <div>
             <h4>Legal &amp; Teknologi</h4>
-            <a href="#/privasi">Kebijakan Privasi</a>
-            <a href="#/ketentuan">Syarat &amp; Ketentuan</a>
-            <a href="#/disclaimer">Disclaimer</a>
+            <a href="/privasi">Kebijakan Privasi</a>
+            <a href="/ketentuan">Syarat &amp; Ketentuan</a>
+            <a href="/disclaimer">Disclaimer</a>
             <p style="margin-top:12px;font-size:.82rem">Dibangun dengan Astro + TypeScript + Tailwind CSS, kode sumber di GitHub, ter-deploy otomatis di Cloudflare Pages, konten dikelola via Decap CMS.</p>
             <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">GitHub: renaldosinaga98/petanibijakindo</a>
           </div>
@@ -1053,7 +1064,7 @@
         excerpt:"Pupuk yang tepat dosis tetapi salah waktu sama borosnya dengan pupuk yang salah dosis. Artikel ini menyusun jadwal pemupukan padi yang praktis per fase tumbuh — dasar, anakan aktif, primordia, dan pengisian bulir — lengkap dengan cara membaca warna daun sebagai penentu susulan nitrogen.",
         body:[
           ["Fase Dasar (0–7 HST): Fondasi Akar",["Pada fase ini tanaman membutuhkan fosfor untuk perakaran dan sebagian kalium. Berikan seluruh SP-36 (75–100 kg/ha) dan KCl (50–75 kg/ha) sebagai pupuk dasar, ditambah sepertiga bagian Urea. Bila memakai NPK majemuk ±300 kg/ha, berikan separuhnya sebagai dasar bersama pupuk organik ±2 ton/ha.","Aplikasi dilakukan saat tanah macak-macak dan petakan dialiri air tipis agar pupuk tidak hanyut. Pupuk dasar yang tepat membuat anakan terbentuk serempak sejak awal."]],
-          ["Fase Anakan Aktif (21–30 HST): Susulan Nitrogen Pertama",["Ini fase paling rakus nitrogen. Berikan sepertiga Urea kedua (dari total 200–250 kg/ha) saat anakan aktif terbentuk. Gunakan Bagan Warna Daun (BWD): bila warna daun berada di bawah skala 4, susulan tidak boleh ditunda.","Hitung total kebutuhan semua jenis pupuk untuk luas sawah Anda di <a href='#/tools/pupuk'>Kalkulator Kebutuhan Pupuk</a> — dosis awal per tanaman padi sudah mengikuti kisaran rekomendasi spesifik lokasi dan dapat Anda sesuaikan dengan hasil uji tanah."]],
+          ["Fase Anakan Aktif (21–30 HST): Susulan Nitrogen Pertama",["Ini fase paling rakus nitrogen. Berikan sepertiga Urea kedua (dari total 200–250 kg/ha) saat anakan aktif terbentuk. Gunakan Bagan Warna Daun (BWD): bila warna daun berada di bawah skala 4, susulan tidak boleh ditunda.","Hitung total kebutuhan semua jenis pupuk untuk luas sawah Anda di <a href='/tools/pupuk'>Kalkulator Kebutuhan Pupuk</a> — dosis awal per tanaman padi sudah mengikuti kisaran rekomendasi spesifik lokasi dan dapat Anda sesuaikan dengan hasil uji tanah."]],
           ["Fase Primordia (40–45 HST): Penentu Jumlah Bulir",["Menjelang pembentukan malai (primordia), berikan sisa Urea dan, bila belum diberikan, sisa KCl. Kalium pada fase ini menentukan kekuatan batang dan jumlah bulir per malai, serta menekan risiko rebah saat pengisian gabah.","Hindari pemupukan nitrogen berlebihan setelah fase ini: daun yang terlalu hijau mengundang wereng dan penyakit blas, dan malai keluar tidak serempak."]],
           ["Fase Pengisian Bulir sampai Panen",["Setelah malai keluar, umumnya tidak ada lagi pemupukan tanah. Fokus beralih ke pengelolaan air: pertahankan air hingga 10–14 hari sebelum panen, lalu keringkan petakan secara bertahap agar gabah mengisi penuh dan panen mudah dilakukan.","Catat jadwal dan dosis aktual yang Anda berikan setiap musim. Catatan sederhana ini — dibandingkan dengan hasil ubinan — adalah cara paling murah untuk menyempurnakan jadwal pemupukan musim berikutnya."]]
         ],
@@ -1062,7 +1073,7 @@
         excerpt:"Rante di Sumatera, tumbak dan bata di Jawa Barat, kesuk di Jawa Tengah–Timur, hingga irik dan borong di daerah lain — satuan luas tradisional masih hidup dalam transaksi lahan hingga hari ini. Memahami padanannya dalam meter persegi melindungi Anda dari salah hitung harga sewa maupun jual-beli tanah.",
         body:[
           ["Kenapa Satuan Tradisional Masih Dipakai",["Satuan tradisional lahir dari cara ukur lama — rantai ukur, langkah, dan kemampuan garap — dan terikat kuat pada adat setempat. Dalam jual-beli dan sewa lahan antarwarga, angka yang disebut hampir selalu satuan daerah, bukan hektare.","Masalah muncul karena satuan yang sama dapat berarti luas yang berbeda di kabupaten yang berbeda. Karena itu setiap transaksi lahan wajib menyebutkan padanan meter perseginya secara tertulis."]],
-          ["Rante, Tumbak, dan Padanannya",["Satu rante di Sumatera Utara dan Aceh umumnya 400 m² (20 m × 20 m), mengikuti standar rantai ukur 404,69 m² yang dibulatkan dalam praktik. Satu tumbak di Jawa Barat setara ±14,1 m², dan satu bata juga sekitar 14 m²; 700 tumbak kurang lebih sama dengan 1 hektare.","Di Jawa dikenal pula kesuk (±750–1.000 m², berbeda antar daerah) dan satuan garapan seperti irik. Angka-angka ini adalah kisaran umum — selalu verifikasi dengan perangkat desa atau juru ukur setempat. Untuk konversi cepat antar satuan, gunakan <a href='#/tools/rante'>Konversi Hektare ke Rante</a> kami dan pilih standar rante wilayah Anda, termasuk ukuran kustom."]],
+          ["Rante, Tumbak, dan Padanannya",["Satu rante di Sumatera Utara dan Aceh umumnya 400 m² (20 m × 20 m), mengikuti standar rantai ukur 404,69 m² yang dibulatkan dalam praktik. Satu tumbak di Jawa Barat setara ±14,1 m², dan satu bata juga sekitar 14 m²; 700 tumbak kurang lebih sama dengan 1 hektare.","Di Jawa dikenal pula kesuk (±750–1.000 m², berbeda antar daerah) dan satuan garapan seperti irik. Angka-angka ini adalah kisaran umum — selalu verifikasi dengan perangkat desa atau juru ukur setempat. Untuk konversi cepat antar satuan, gunakan <a href='/tools/rante'>Konversi Hektare ke Rante</a> kami dan pilih standar rante wilayah Anda, termasuk ukuran kustom."]],
           ["Cara Aman Bertransaksi dengan Satuan Tradisional",["Ukur ulang lahan bersama kedua pihak sebelum akad: pakai meteran atau aplikasi GPS di HP, lalu hitung luasnya dalam meter persegi. Hasil ukur ini menjadi angka yang mengikat, sedangkan satuan tradisional cukup menjadi sebutan pendamping.","Tuliskan dalam kwitansi atau surat perjanjian: luas dalam m², padanannya dalam hektare dan satuan setempat, serta standar yang dipakai (misalnya 1 rante = 400 m²). Kebiasaan sederhana ini mencegah sengketa harga di kemudian hari."]],
           ["Menghubungkan Satuan Lahan dengan Perhitungan Tani",["Semua perhitungan tani — kebutuhan benih, pupuk, dan biaya — berbasis hektare atau meter persegi. Lahan 25 rante standar Sumut berarti 10.000 m² atau tepat 1 hektare; dari angka inilah dosis per hektare dikalikan.","Biasakan mengonversi dulu luas lahan Anda ke hektare sebelum memakai kalkulator apa pun di Petani Bijak Indonesia, agar kebutuhan benih dan pupuk tidak meleset hanya karena perbedaan satuan."]]
         ],
@@ -1267,10 +1278,10 @@
       { slug:"biaya-tanam-cabai-per-hektare", cat:"Manajemen Usaha Tani", thumb:"biayacabai", title:"Rincian Biaya Tanam Cabai per Hektare: Dari Bibit sampai Panen Pertama", author:"Renaldo Sinaga", date:"2026-11-18", read:"8 menit baca",
         excerpt:"Cabai adalah komoditas berbiaya tinggi: satu hektare dapat menyerap modal belasan hingga puluhan juta rupiah sebelum panen pertama. Artikel ini merinci pos-pos biayanya — bibit, mulsa, pupuk, pestisida, ajir, dan tenaga kerja — agar Anda bisa menyusun anggaran dan titik impas sebelum menanam, bukan setelah panen.",
         body:[
-          ["Pos Biaya Tetap di Awal Musim",["Biaya awal meliputi pengolahan tanah dan pembuatan bedengan, mulsa plastik hitam perak (sekitar 12–15 roll per hektare), bibit siap tanam untuk ±28.000–33.000 tanaman, serta ajir bambu dan tali. Pos-pos ini dibayar sebelum tanaman menghasilkan apa pun, sehingga harus direncanakan dari modal kerja, bukan dari harapan panen.","Susun semua pos ini baris per baris di <a href='#/tools/biaya'>Kalkulator Biaya Tanam</a> kami — masukkan angka penawaran riil dari kios dan pemasok di daerah Anda, karena harga mulsa, bibit, dan upah berbeda cukup besar antar kabupaten."]],
+          ["Pos Biaya Tetap di Awal Musim",["Biaya awal meliputi pengolahan tanah dan pembuatan bedengan, mulsa plastik hitam perak (sekitar 12–15 roll per hektare), bibit siap tanam untuk ±28.000–33.000 tanaman, serta ajir bambu dan tali. Pos-pos ini dibayar sebelum tanaman menghasilkan apa pun, sehingga harus direncanakan dari modal kerja, bukan dari harapan panen.","Susun semua pos ini baris per baris di <a href='/tools/biaya'>Kalkulator Biaya Tanam</a> kami — masukkan angka penawaran riil dari kios dan pemasok di daerah Anda, karena harga mulsa, bibit, dan upah berbeda cukup besar antar kabupaten."]],
           ["Pos Biaya Berjalan: Pupuk dan Pestisida",["Selama musim berjalan, pupuk susulan (NPK, KCl, dan pupuk daun/kalsium) serta pestisida adalah biaya rutin mingguan. Pada musim hujan, anggaran fungisida untuk antraknosa dapat naik dua kali lipat dibanding musim kemarau — sediakan cadangan anggaran khusus musim basah.","Catat setiap pembelian dalam buku tani sederhana. Tanpa catatan, petani cabai umumnya meremehkan biaya pestisida hingga 30–40% dari angka sebenarnya."]],
           ["Tenaga Kerja: Pos Terbesar yang Sering Tak Terlihat",["Penanaman, pengikatan ajir, pewiwilan, penyemprotan, dan terutama pemetikan berulang 12–18 kali adalah rangkaian pekerjaan padat karya. Bila memakai tenaga keluarga, tetap beri nilai wajar dalam perhitungan agar keuntungan yang terlihat adalah keuntungan yang sesungguhnya.","Dengan total biaya yang jujur, Anda dapat menghitung harga jual minimum: total biaya dibagi perkiraan total panen (kg). Angka ini adalah garis pertahanan Anda saat bernegosiasi dengan pengepul."]],
-          ["Dari Biaya ke Titik Impas",["Setelah total biaya satu hektare tersusun, simulasikan hasilnya di <a href='#/tools/untung'>Kalkulator Keuntungan Panen</a>: masukkan perkiraan hasil bertingkat — skenario rendah, sedang, dan baik — dan lihat pada harga berapa usaha cabai Anda impas.","Cabai yang direncanakan dengan anggaran seperti ini jarang membuat petani terkejut. Yang membuat rugi biasanya bukan harga jatuh semata, melainkan biaya yang tidak pernah dihitung sejak awal."]]
+          ["Dari Biaya ke Titik Impas",["Setelah total biaya satu hektare tersusun, simulasikan hasilnya di <a href='/tools/untung'>Kalkulator Keuntungan Panen</a>: masukkan perkiraan hasil bertingkat — skenario rendah, sedang, dan baik — dan lihat pada harga berapa usaha cabai Anda impas.","Cabai yang direncanakan dengan anggaran seperti ini jarang membuat petani terkejut. Yang membuat rugi biasanya bukan harga jatuh semata, melainkan biaya yang tidak pernah dihitung sejak awal."]]
         ],
         refs:["Badan Pusat Statistik (BPS) — Struktur Ongkos Usaha Tani Cabai Merah.","Balai Penelitian Tanaman Sayuran (Balitsa), Lembang — Analisis Usahatani Cabai Merah."] },
       { slug:"budidaya-durian", cat:"Perkebunan", thumb:"durian", title:"Budidaya Durian: Investasi Jangka Panjang Sang Raja Buah", author:"Renaldo Sinaga", date:"2026-11-20", read:"9 menit baca",
@@ -1304,7 +1315,7 @@
         excerpt:"Daun dan biji mimba mengandung azadirachtin yang mengganggu makan dan pergantian kulit serangga hama. Artikel ini menjelaskan cara membuat ekstrak mimba yang benar, batas keampuhannya yang jujur, dan aturan keselamatan yang tetap berlaku meskipun bahannya alami.",
         body:[
           ["Cara Kerja Azadirachtin",["Azadirachtin bekerja sebagai antifeedant (serangga berhenti makan), pengganggu hormon ganti kulit, dan penekan peneluran pada ulat, kutu daun, wereng, dan trips. Ia tidak membunuh seketika seperti insektisida kimia — efek terlihat dalam 2–4 hari berupa hama yang berhenti makan dan gagal berkembang.","Mimba relatif aman bagi musuh alami dan lebah bila disemprotkan sore hari, serta cepat terurai sinar matahari. Kelemahannya: daya kerja lebih lambat dan tidak sekuat bahan kimia pada ledakan hama berat."]],
-          ["Resep Ekstrak Daun dan Biji Mimba",["Tumbuk halus 50–100 gram daun mimba segar (atau 30–50 gram biji mimba yang ditumbuk), rendam dalam 1 liter air selama 12–24 jam di tempat teduh, saring, lalu encerkan menjadi 10–15 liter larutan semprot. Tambahkan beberapa tetes sabun cair netral sebagai perekat.","Gunakan larutan pada hari yang sama karena azadirachtin cepat terdegradasi. Untuk kebutuhan tangki yang lebih besar, kalikan resep secara proporsional dan hitung kebutuhan bahan per tangki dengan prinsip yang sama seperti pada <a href='#/tools/pestisida'>Kalkulator Dosis Pestisida</a> kami."]],
+          ["Resep Ekstrak Daun dan Biji Mimba",["Tumbuk halus 50–100 gram daun mimba segar (atau 30–50 gram biji mimba yang ditumbuk), rendam dalam 1 liter air selama 12–24 jam di tempat teduh, saring, lalu encerkan menjadi 10–15 liter larutan semprot. Tambahkan beberapa tetes sabun cair netral sebagai perekat.","Gunakan larutan pada hari yang sama karena azadirachtin cepat terdegradasi. Untuk kebutuhan tangki yang lebih besar, kalikan resep secara proporsional dan hitung kebutuhan bahan per tangki dengan prinsip yang sama seperti pada <a href='/tools/pestisida'>Kalkulator Dosis Pestisida</a> kami."]],
           ["Cara Aplikasi yang Benar",["Semprotkan sore hari (setelah pukul 16.00) agar bahan aktif tidak langsung rusak oleh sinar ultraviolet dan lebah sudah kembali ke sarang. Arahkan ke bagian bawah daun tempat kutu dan ulat muda bersembunyi, dan ulangi 5–7 hari sekali pada serangan ringan hingga sedang.","Uji dulu pada beberapa tanaman dan tunggu 1–2 hari untuk memastikan tidak ada fitotoksisitas (daun terbakar), terutama pada tanaman muda dan saat cuaca sangat panas."]],
           ["Peringatan Keselamatan — Alami Bukan Berarti Tanpa Aturan",["Meskipun nabati, ekstrak pekat tetap dapat mengiritasi mata dan kulit: gunakan sarung tangan dan masker saat menumbuk dan menyemprot, jangan makan/minum selama aplikasi, dan cuci tangan setelahnya. Simpan bahan dan larutan jauh dari anak-anak serta jangan pernah memakai wadah bekasnya untuk makanan atau minuman.","Pestisida nabati adalah komponen pengendalian hama terpadu untuk menekan populasi sejak dini, bukan pengganti total insektisida terdaftar pada ledakan hama. Bila ambang kendali terlampaui jauh, konsultasikan pilihan produk terdaftar ke petugas POPT setempat."]]
         ],
@@ -1321,9 +1332,9 @@
       { slug:"analisis-keuntungan-melon", cat:"Manajemen Usaha Tani", thumb:"analisismelon", title:"Analisis Keuntungan Budidaya Melon per Hektare: Modal, BEP, dan Proyeksi Laba", author:"Renaldo Sinaga", date:"2026-11-30", read:"8 menit baca",
         excerpt:"Melon adalah usaha hortikultura bermodal besar dan berisiko tinggi — tetapi juga salah satu yang labanya paling tebal bila mutu buah mencapai grade premium. Artikel ini membedah struktur modal melon per hektare, cara menghitung BEP harga dan volume, dan skenario untung-rugi pada tiga tingkat hasil.",
         body:[
-          ["Struktur Modal: Benih dan Infrastruktur Mendominasi",["Berbeda dengan sayuran biasa, modal melon terbesar ada di benih hibrida (satu biji dapat berharga ribuan rupiah untuk populasi 20.000–25.000 tanaman), mulsa, instalasi irigasi tetes, dan ajir/tali lanjaran. Total modal kerja per hektare umumnya jauh di atas sayuran daun dan harus tersedia penuh sebelum tanam — kekurangan modal di tengah jalan adalah penyebab umum kegagalan mutu.","Susun seluruh pos ini secara rinci dan jangan lupa biaya petik, sortir, dan pengepakan. Gunakan <a href='#/tools/biaya'>Kalkulator Biaya Tanam</a> untuk menjumlahkan angka riil penawaran pemasok di daerah Anda."]],
+          ["Struktur Modal: Benih dan Infrastruktur Mendominasi",["Berbeda dengan sayuran biasa, modal melon terbesar ada di benih hibrida (satu biji dapat berharga ribuan rupiah untuk populasi 20.000–25.000 tanaman), mulsa, instalasi irigasi tetes, dan ajir/tali lanjaran. Total modal kerja per hektare umumnya jauh di atas sayuran daun dan harus tersedia penuh sebelum tanam — kekurangan modal di tengah jalan adalah penyebab umum kegagalan mutu.","Susun seluruh pos ini secara rinci dan jangan lupa biaya petik, sortir, dan pengepakan. Gunakan <a href='/tools/biaya'>Kalkulator Biaya Tanam</a> untuk menjumlahkan angka riil penawaran pemasok di daerah Anda."]],
           ["Menghitung BEP Harga dan BEP Volume",["BEP harga = total biaya dibagi total hasil (kg): inilah harga jual minimum per kilogram agar Anda tidak rugi. BEP volume = total biaya dibagi harga jual: jumlah kilogram minimum yang harus terjual pada harga tersebut.","Lakukan perhitungan ini sebelum tanam, bukan setelah panen. Bila BEP harga Anda sudah mendekati harga pasar rata-rata, usaha melon Anda tidak memiliki bantalan keamanan — tekan biaya atau naikkan target grade sebelum memutuskan menanam."]],
-          ["Skenario Tiga Tingkat Hasil",["Simulasikan tiga skenario di <a href='#/tools/untung'>Kalkulator Keuntungan Panen</a>: hasil rendah (serangan penyakit menekan produksi dan banyak buah afkir), hasil sedang (panen normal grade campuran), dan hasil baik (buah premium dominan dengan harga kontrak). Perhatikan bahwa pada melon, perbedaan harga antar grade sering lebih menentukan laba daripada perbedaan total tonase.","Dari simulasi itu tetapkan target yang terukur: misalnya persentase buah grade A minimum dan harga kontrak terendah yang masih menyisakan margin sehat di atas 30%."]],
+          ["Skenario Tiga Tingkat Hasil",["Simulasikan tiga skenario di <a href='/tools/untung'>Kalkulator Keuntungan Panen</a>: hasil rendah (serangan penyakit menekan produksi dan banyak buah afkir), hasil sedang (panen normal grade campuran), dan hasil baik (buah premium dominan dengan harga kontrak). Perhatikan bahwa pada melon, perbedaan harga antar grade sering lebih menentukan laba daripada perbedaan total tonase.","Dari simulasi itu tetapkan target yang terukur: misalnya persentase buah grade A minimum dan harga kontrak terendah yang masih menyisakan margin sehat di atas 30%."]],
           ["Mengendalikan Risiko",["Sebar risiko dengan menanam bertahap 2–3 gelombang berselang 2 minggu agar panen tidak menumpuk pada satu harga, dan amankan pasar sebelum tanam melalui kesepakatan dengan pengepul atau toko buah. Asuransi usaha tani dan catatan biaya per gelombang membantu Anda belajar dari musim ke musim.","Melon menghargai petani yang menghitung. Petani yang hanya mengandalkan ingatan harga musim lalu tanpa BEP tertulis sedang berjudi, bukan berusaha tani."]]
         ],
         refs:["Badan Pusat Statistik (BPS) — Struktur Ongkos Usaha Tani Hortikultura.","Balai Penelitian Tanaman Buah Tropika (Balitbu), Solok — Analisis Usahatani Melon."] },
@@ -1411,7 +1422,7 @@
     /* ---------------- Halaman statis ---------------- */
     const PAGES = {
       tentang:{ title:"Tentang Kami", nav:"tentang", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Tentang Kami</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Tentang Kami</span></div>
         <h1>Tentang Petani Bijak Indonesia</h1>
         <p><b>Petani Bijak Indonesia</b> adalah platform digital pertanian modern yang menyediakan tools kalkulator pertanian online, informasi budidaya, dan panduan praktis untuk petani Indonesia — dengan tagline <i>“Petani Cerdas, Hasil Berkualitas.”</i> Situs resminya beralamat di <b>petanibijakindonesia.click</b> — nama domain yang sama persis dengan nama brand-nya.</p>
         <p>Kami percaya keputusan tani yang baik lahir dari angka yang benar: berapa benih yang harus dibeli, berapa karung pupuk yang dibutuhkan, berapa biaya satu musim, dan berapa keuntungan yang realistis. Karena itu seluruh kalkulator di platform ini gratis, berjalan langsung di browser tanpa registrasi, dan memakai acuan rekomendasi agronomis Indonesia yang dapat disesuaikan dengan kondisi daerah masing-masing.</p>
@@ -1426,10 +1437,10 @@
         <p>Setiap angka rekomendasi dan panduan di platform ini disusun dengan standar berikut:</p>
         <ul><li><b>Sumber primer resmi:</b> Kementerian Pertanian, Balitbangtan/BRIN (Balitsa, Balitbu, Balitkabi, Puslitkoka, PPKS), BPS, BMKG, dan FAO — dicantumkan sebagai referensi di akhir setiap artikel.</li><li><b>Dosis tidak dikarang:</b> dosis pestisida selalu berasal dari label resmi produk; dosis pupuk adalah kisaran rekomendasi spesifik lokasi yang dapat disesuaikan pengguna.</li><li><b>Penulis &amp; tanggal jelas:</b> setiap artikel mencantumkan penulis dan tanggal publikasi.</li><li><b>Koreksi terbuka:</b> pembaca dapat mengirim koreksi ke <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a>; koreksi yang terverifikasi akan diperbarui pada konten terkait.</li><li><b>Cakupan komoditas:</b> panduan mencakup padi, jagung, kedelai, singkong, cabai, terong, pare, semangka, melon, tomat, bawang merah, mentimun, kentang, sayuran daun, pisang, jeruk, kopi, dan kelapa sawit.</li></ul>
         <h2>Teknologi yang Kami Pakai</h2>
-        <p>Website ini dibangun dengan <b>Astro</b> (TypeScript + Tailwind CSS), kode sumbernya tersimpan di GitHub pada repositori <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo</a> (branch <code>main</code>), dan ter-deploy otomatis sebagai situs statis di <b>Cloudflare Pages</b>. Artikel dan panduan dikelola melalui CMS berbasis GitHub (Decap CMS + Astro Content Collections). Rincian alur pengelolaan konten dapat dibaca di halaman <a href="#/kelola">Kelola Konten (CMS)</a>.</p>
-        <p>Hubungi kami kapan saja melalui email <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a> atau halaman <a href="#/kontak">Kontak</a>.</p>`},
+        <p>Website ini dibangun dengan <b>Astro</b> (TypeScript + Tailwind CSS), kode sumbernya tersimpan di GitHub pada repositori <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo</a> (branch <code>main</code>), dan ter-deploy otomatis sebagai situs statis di <b>Cloudflare Pages</b>. Artikel dan panduan dikelola melalui CMS berbasis GitHub (Decap CMS + Astro Content Collections). Rincian alur pengelolaan konten dapat dibaca di halaman <a href="/kelola">Kelola Konten (CMS)</a>.</p>
+        <p>Hubungi kami kapan saja melalui email <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a> atau halaman <a href="/kontak">Kontak</a>.</p>`},
       kontak:{ title:"Kontak", nav:"kontak", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Kontak</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Kontak</span></div>
         <h1>Hubungi Kami</h1>
         <p>Punya pertanyaan tentang kalkulator, saran artikel, koreksi data, atau peluang kerja sama? Tim kami membaca setiap pesan yang masuk.</p>
         <div class="contact-card">
@@ -1441,7 +1452,7 @@
         <ul><li>Koreksi angka rekomendasi atau temuan kesalahan hitung.</li><li>Usulan tools kalkulator atau artikel baru.</li><li>Kerja sama penyuluhan, kelompok tani, dan komunitas.</li><li>Iklan dan kemitraan (sesuai kebijakan iklan kami).</li></ul>
         <p>Untuk pertanyaan cepat seputar penggunaan tools, jelaskan nama kalkulator dan angka yang Anda masukkan agar kami bisa membantu memeriksa perhitungan Anda.</p>`},
       privasi:{ title:"Kebijakan Privasi", nav:"", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Kebijakan Privasi</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Kebijakan Privasi</span></div>
         <h1>Kebijakan Privasi</h1>
         <p><i>Terakhir diperbarui: 12 November 2026. Berlaku untuk website Petani Bijak Indonesia (petanibijakindonesia.click) yang dikelola Renaldo Sinaga bersama Team Vexora.</i></p>
         <h2>1. Data yang Kami Kumpulkan</h2>
@@ -1457,7 +1468,7 @@
         <h2>6. Hak Anda dan Kontak</h2>
         <p>Anda berhak meminta penghapusan email yang pernah Anda kirimkan kepada kami. Untuk pertanyaan privasi, hubungi <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a>.</p>`},
       ketentuan:{ title:"Syarat & Ketentuan", nav:"", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Syarat &amp; Ketentuan</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Syarat &amp; Ketentuan</span></div>
         <h1>Syarat &amp; Ketentuan Penggunaan</h1>
         <p><i>Terakhir diperbarui: 12 November 2026.</i></p>
         <h2>1. Penerimaan Ketentuan</h2>
@@ -1475,7 +1486,7 @@
         <h2>7. Kontak</h2>
         <p>Pertanyaan mengenai ketentuan ini: <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a>.</p>`},
       disclaimer:{ title:"Disclaimer", nav:"", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Disclaimer</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Disclaimer</span></div>
         <h1>Disclaimer</h1>
         <p><i>Terakhir diperbarui: 12 November 2026.</i></p>
         <h2>Estimasi, Bukan Kepastian</h2>
@@ -1489,7 +1500,7 @@
         <h2>Tanggung Jawab</h2>
         <p>Keputusan usaha tani tetap berada di tangan Anda sebagai pelaku usaha. Petani Bijak Indonesia, Renaldo Sinaga, dan Team Vexora berupaya menjaga akurasi konten, namun tidak bertanggung jawab atas kerugian yang timbul dari penggunaan informasi di website ini tanpa verifikasi lapangan.</p>`},
       kelola:{ title:"Kelola Konten & Arsitektur", nav:"", html:`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Kelola Konten &amp; Arsitektur</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <span>Kelola Konten &amp; Arsitektur</span></div>
         <h1>Kelola Konten &amp; Arsitektur Website</h1>
         <p>Halaman ini menjelaskan stack teknologi Petani Bijak Indonesia dan alur pengelolaan kontennya, agar pemilik situs dapat menambah atau mengubah artikel tanpa menyentuh kode.</p>
         <h2>Stack Teknologi</h2>
@@ -1575,7 +1586,7 @@ collections:
           <tr><td>10 Desember 2026</td><td>Budidaya Vanili: Emas Hijau Bernilai Ekspor Tinggi</td><td>Perkebunan</td><td><span class="sched-badge">Terjadwal</span></td></tr>
           <tr><td>12 Desember 2026</td><td>Budidaya Daun Bawang: Panen Dua Bulan, Perputaran Uang Cepat</td><td>Budidaya Sayuran</td><td><span class="sched-badge">Terjadwal</span></td></tr>
         </tbody></table>
-        <p>Selain jadwal di atas, lima artikel baru terbit bersamaan pada 10–12 November 2026: Budidaya Kacang Panjang, Budidaya Pepaya California, Jadwal Pemupukan Padi per Fase Tumbuh, Satuan Luas Lahan Tradisional Indonesia, dan Budidaya Ubi Jalar — semuanya sudah dapat dibaca di halaman <a href="#/artikel">Panduan &amp; Artikel</a>.</p>
+        <p>Selain jadwal di atas, lima artikel baru terbit bersamaan pada 10–12 November 2026: Budidaya Kacang Panjang, Budidaya Pepaya California, Jadwal Pemupukan Padi per Fase Tumbuh, Satuan Luas Lahan Tradisional Indonesia, dan Budidaya Ubi Jalar — semuanya sudah dapat dibaca di halaman <a href="/artikel">Panduan &amp; Artikel</a>.</p>
         <h2>Catatan Keamanan &amp; SEO</h2>
         <p>File <code>public/_headers</code> mengatur header keamanan (CSP dasar, X-Content-Type-Options, Referrer-Policy) dan cache panjang untuk aset statis. Sitemap XML dan robots.txt diterbitkan dari folder <code>public/</code> / hasil build, setiap halaman memiliki canonical URL dan schema markup (WebSite, Article, BreadcrumbList) dari layout utama.</p>
         <p>Pertanyaan teknis pengelolaan situs: <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a> (Renaldo Sinaga — Team Vexora).</p>`}
@@ -1585,20 +1596,20 @@ collections:
     function toolCard(t){
       return `<article class="tool-card"><div class="tool-art" role="img" aria-label="Ilustrasi ${t.name} — Petani Bijak Indonesia (petanibijakindonesia.click)">${ILLUS[t.illus]()}</div>
         <div class="tool-body"><span class="tag">${t.cat}</span><h3>${t.name}</h3><p>${t.desc}</p>
-        <div class="tool-foot"><span class="free">Gratis · Tanpa registrasi</span><a class="tool-cta" href="#/tools/${t.id}">Gunakan Tools <span class="arr" aria-hidden="true">→</span></a></div></div></article>`;
+        <div class="tool-foot"><span class="free">Gratis · Tanpa registrasi</span><a class="tool-cta" href="/tools/${t.id}">Gunakan Tools <span class="arr" aria-hidden="true">→</span></a></div></div></article>`;
     }
     function artCard(a){
-      return `<a class="art-card" href="#/artikel/${a.slug}"><div class="art-thumb">${ART_THUMB[a.thumb]()}</div>
+      return `<a class="art-card" href="/artikel/${a.slug}"><div class="art-thumb">${ART_THUMB[a.thumb]()}</div>
         <div class="art-body"><span class="meta">${a.cat} · ${a.read}</span><h3>${a.title}</h3><p>${a.excerpt}</p>
         <span class="byline">Oleh ${a.author} · ${fmtDate(a.date)}</span></div></a>`;
     }
     function renderHome(){
       $("#cat-grid").innerHTML = CATEGORIES.map(c=>`<button class="cat-card" data-cat-tool="${c.tool}"><span class="cat-ic"><svg width="26" height="26" viewBox="0 0 24 24">${c.icon}</svg></span><span><b>${c.name}</b><span>${c.desc}</span></span></button>`).join("");
-      $$("#cat-grid [data-cat-tool]").forEach(b=>b.addEventListener("click",()=>{ location.hash = "#/tools/"+b.dataset.catTool; }));
+      $$("#cat-grid [data-cat-tool]").forEach(b=>b.addEventListener("click",()=>{ navigate("/tools/"+b.dataset.catTool); }));
       $("#home-tools").innerHTML = TOOLS.map(toolCard).join("");
       $("#home-articles").innerHTML = publishedArticles().slice(0,6).map(artCard).join("");
       const cg=$("#crop-grid");
-      if(cg) cg.innerHTML = CROPS.filter(c=>isPublished(ARTICLES.find(x=>x.slug===c.slug))).map(c=>`<a class="crop-card" href="#/artikel/${c.slug}"><div class="crop-thumb">${ART_THUMB[c.thumb]()}</div><div class="crop-body"><span class="crop-name">${c.name}</span><p class="crop-note">${c.note}</p><span class="go">Baca panduan →</span></div></a>`).join("");
+      if(cg) cg.innerHTML = CROPS.filter(c=>isPublished(ARTICLES.find(x=>x.slug===c.slug))).map(c=>`<a class="crop-card" href="/artikel/${c.slug}"><div class="crop-thumb">${ART_THUMB[c.thumb]()}</div><div class="crop-body"><span class="crop-name">${c.name}</span><p class="crop-note">${c.note}</p><span class="go">Baca panduan →</span></div></a>`).join("");
       const sa=$("#stat-articles"); if(sa) sa.textContent = publishedArticles().length;
       $("#hero-art-slot").innerHTML = ILLUS.hero();
     }
@@ -1700,7 +1711,7 @@ collections:
       });
     }
     function openCalc(id){
-      const tool=toolById(id); if(!tool){ location.hash="#/tools"; return; }
+      const tool=toolById(id); if(!tool){ navigate("/tools", true); return; }
       currentTool=tool; currentResult=null;
       $("#calc-crumb-name").textContent=tool.name;
       $("#calc-title").textContent=tool.name;
@@ -1709,7 +1720,7 @@ collections:
       const metaDesc=document.querySelector('meta[name="description"]');
       if(metaDesc) metaDesc.setAttribute("content", tool.name+" online gratis di Petani Bijak Indonesia (petanibijakindonesia.click). "+tool.desc);
       const ldCalc=$("#ld-dynamic");
-      if(ldCalc) ldCalc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"WebApplication","name":tool.name+" — Petani Bijak Indonesia","url":SITE_URL+"/#/tools/"+tool.id,"applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"id-ID","description":tool.desc,"isPartOf":{"@id":"#site"},"publisher":{"@id":"#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}});
+      if(ldCalc) ldCalc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"WebApplication","name":tool.name+" — Petani Bijak Indonesia","url":SITE_URL+"/tools/"+tool.id,"applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"id-ID","description":tool.desc,"isPartOf":{"@id":"#site"},"publisher":{"@id":"#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}});
       const artBox=$("#calc-art"); artBox.setAttribute("role","img"); artBox.setAttribute("aria-label","Ilustrasi "+tool.name+" — Petani Bijak Indonesia");
       artBox.innerHTML=ILLUS[tool.illus]();
       $("#calc-extra-note").innerHTML = tool.id==="pestisida"
@@ -2051,12 +2062,12 @@ collections:
 
     /* ---------------- Artikel ---------------- */
     function openArticle(slug){
-      const a=ARTICLES.find(x=>x.slug===slug); if(!a || !isPublished(a)){ location.hash="#/artikel"; return; }
-      const toc=a.body.map((s,i)=>`<li><a href="#/artikel/${a.slug}" data-toc="${i}">${s[0]}</a></li>`).join("");
+      const a=ARTICLES.find(x=>x.slug===slug); if(!a || !isPublished(a)){ navigate("/artikel", true); return; }
+      const toc=a.body.map((s,i)=>`<li><a href="/artikel/${a.slug}" data-toc="${i}">${s[0]}</a></li>`).join("");
       const bodyHtml=a.body.map((s,i)=>`<h2 id="sec-${i}">${s[0]}</h2>${s[1].map(p=> p.startsWith("•")? "" : `<p>${p}</p>`).join("")}`).join("");
       const related=publishedArticles().filter(x=>x.slug!==a.slug && x.cat===a.cat).concat(publishedArticles().filter(x=>x.slug!==a.slug && x.cat!==a.cat)).slice(0,3);
       $("#article-content").innerHTML=`
-        <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <a href="#/artikel">Artikel</a> <span>›</span> <span>${a.cat}</span></div>
+        <div class="crumb"><a href="/">Beranda</a> <span>›</span> <a href="/artikel">Artikel</a> <span>›</span> <span>${a.cat}</span></div>
         <span class="pill">${a.cat}</span>
         <h1>${a.title}</h1>
         <p style="color:var(--ink-soft)">Oleh <b>${a.author}</b> · ${fmtDate(a.date)} · ${a.read}</p>
@@ -2070,7 +2081,7 @@ collections:
       $$("#article-content [data-toc]").forEach(l=>l.addEventListener("click",e=>{ e.preventDefault(); const el=document.getElementById("sec-"+l.dataset.toc); if(el) el.scrollIntoView({behavior:"smooth"}); }));
       document.title=a.title+" | Petani Bijak Indonesia";
       const ld=$("#ld-dynamic");
-      if(ld) ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":a.title,"description":a.excerpt,"url":SITE_URL+"/#/artikel/"+a.slug,"mainEntityOfPage":SITE_URL+"/#/artikel/"+a.slug,"inLanguage":"id-ID","datePublished":a.date,"dateModified":a.date,"author":{"@type":"Person","name":a.author},"publisher":{"@type":"Organization","name":"Petani Bijak Indonesia","url":SITE_URL+"/"},"articleSection":a.cat,"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":SITE_URL+"/"},{"@type":"ListItem","position":2,"name":"Panduan & Artikel","item":SITE_URL+"/#/artikel"},{"@type":"ListItem","position":3,"name":a.title,"item":SITE_URL+"/#/artikel/"+a.slug}]}});
+      if(ld) ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":a.title,"description":a.excerpt,"url":SITE_URL+"/artikel/"+a.slug,"mainEntityOfPage":SITE_URL+"/artikel/"+a.slug,"inLanguage":"id-ID","datePublished":a.date,"dateModified":a.date,"author":{"@type":"Person","name":a.author},"publisher":{"@type":"Organization","name":"Petani Bijak Indonesia","url":SITE_URL+"/"},"articleSection":a.cat,"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":SITE_URL+"/"},{"@type":"ListItem","position":2,"name":"Panduan & Artikel","item":SITE_URL+"/artikel"},{"@type":"ListItem","position":3,"name":a.title,"item":SITE_URL+"/artikel/"+a.slug}]}});
       showView("article"); setNav("artikel"); window.scrollTo({top:0});
     }
     let artCat="Semua";
@@ -2101,9 +2112,32 @@ collections:
     const VIEWS={home:"view-home", tools:"view-tools", calc:"view-calc", articles:"view-articles", article:"view-article", page:"view-page"};
     function showView(key){ Object.values(VIEWS).forEach(id=>$("#"+id).classList.remove("active")); $("#"+VIEWS[key]).classList.add("active"); }
     function setNav(key){ $$("nav.main a").forEach(a=>a.classList.toggle("active", a.dataset.nav===key)); }
+    /* Router History API — URL bersih tanpa tanda pagar (#).
+       BASE: awalan "/petanibijakindo" bila situs disajikan dari subpath demo
+       GitHub Pages; kosong di domain utama. Rute dicocokkan tanpa BASE,
+       sedangkan URL yang ditulis pushState/replaceState selalu menyertakan BASE. */
+    const BASE = (location.pathname==="/petanibijakindo" || location.pathname.indexOf("/petanibijakindo/")===0) ? "/petanibijakindo" : "";
+    function legacyHashPath(){
+      if(location.hash.indexOf("#/")===0) return location.hash.slice(1);
+      if(location.hash==="#") return "/";
+      return null;
+    }
+    function pathParts(){
+      let p=location.pathname;
+      if(BASE && p.indexOf(BASE)===0) p=p.slice(BASE.length);
+      p=p.replace(/^\/+|\/+$/g,"");
+      return p? p.split("/") : [""];
+    }
+    function navigate(path, replace){
+      try{ if(replace) history.replaceState(null,"",BASE+path); else history.pushState(null,"",BASE+path); }catch(e){}
+      route();
+    }
     function route(){
-      const hash=location.hash.replace(/^#\/?/,"");
-      const parts=hash.split("/");
+      /* Kompatibilitas tautan lama: URL hash lama (/#/tools, /#/artikel/<slug>, …)
+         otomatis dikonversi menjadi path bersih yang setara. */
+      const legacy=legacyHashPath();
+      if(legacy!==null){ try{ history.replaceState(null,"",BASE+legacy); }catch(e){} }
+      const parts=pathParts();
       $("#mobile-menu").classList.remove("open");
       if(parts[0]===""||parts[0]==="home"){ showView("home"); setNav("home"); window.scrollTo({top:0}); }
       else if(parts[0]==="tools" && parts[1]){ openCalc(parts[1]); window.scrollTo({top:0}); }
@@ -2133,28 +2167,44 @@ collections:
     }
     document.addEventListener("DOMContentLoaded",()=>{
       initTheme(); renderHome(); renderTools();
-      $("#foot-tools").innerHTML=TOOLS.map(t=>`<a href="#/tools/${t.id}">${t.name}</a>`).join("");
+      $("#foot-tools").innerHTML=TOOLS.map(t=>`<a href="/tools/${t.id}">${t.name}</a>`).join("");
       $("#btn-burger").addEventListener("click",()=>{ const m=$("#mobile-menu"); const open=m.classList.toggle("open"); $("#btn-burger").setAttribute("aria-expanded",open); });
-      $("#btn-search").addEventListener("click",()=>{ location.hash="#/tools"; setTimeout(()=>$("#tools-search-input").focus(),60); });
+      $("#btn-search").addEventListener("click",()=>{ navigate("/tools"); setTimeout(()=>$("#tools-search-input").focus(),60); });
       // Hero search
       const hs=$("#hero-search-input"), hr=$("#hero-search-results");
       function updateHeroSearch(){
         const res=toolSearchResults(hs.value);
         if(!hs.value.trim()){ hr.hidden=true; return; }
         hr.hidden=false;
-        hr.innerHTML= res.length? res.map(t=>`<a href="#/tools/${t.id}"><span aria-hidden="true">🌱</span>${t.name}</a>`).join("") : `<div class="none">Tidak ditemukan. Coba kata “pupuk”, “benih”, atau “rante”.</div>`;
+        hr.innerHTML= res.length? res.map(t=>`<a href="/tools/${t.id}"><span aria-hidden="true">🌱</span>${t.name}</a>`).join("") : `<div class="none">Tidak ditemukan. Coba kata “pupuk”, “benih”, atau “rante”.</div>`;
       }
       hs.addEventListener("input", updateHeroSearch);
       hs.addEventListener("focus", updateHeroSearch);
       document.addEventListener("click",e=>{ if(!$("#hero-search").contains(e.target)) hr.hidden=true; });
-      $("#hero-search").addEventListener("submit",e=>{ e.preventDefault(); const res=toolSearchResults(hs.value); if(res.length){ location.hash="#/tools/"+res[0].id; hr.hidden=true; } else { toolQuery=hs.value; location.hash="#/tools"; renderTools(); } });
+      $("#hero-search").addEventListener("submit",e=>{ e.preventDefault(); const res=toolSearchResults(hs.value); if(res.length){ navigate("/tools/"+res[0].id); hr.hidden=true; } else { toolQuery=hs.value; navigate("/tools"); renderTools(); } });
       // Tools search
       $("#tools-search-input").addEventListener("input",e=>{ toolQuery=e.target.value; renderTools(); });
       $("#tools-search").addEventListener("submit",e=>e.preventDefault());
       // Calculator form
       $("#calc-form").addEventListener("submit", runCalc);
       $("#calc-reset").addEventListener("click",()=>{ if(currentTool){ const cf2=$("#calc-form"); if(cf2) delete cf2.dataset.submitted; renderFields(currentTool); $("#calc-result").innerHTML=`<div class="result-empty"><div class="big" aria-hidden="true">🌾</div>Formulir direset.<br/>Isi kembali data Anda, lalu tekan <b>Hitung Sekarang</b>.</div>`; currentResult=null; } });
-      window.addEventListener("hashchange", route);
+      // Navigasi internal tanpa refresh: intercept klik tautan internal,
+      // tulis URL bersih (dengan BASE bila ada) lewat History API, lalu render.
+      document.addEventListener("click",e=>{
+        if(e.defaultPrevented || e.button!==0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const a=e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if(!a || (a.target && a.target!=="_self")) return;
+        const href=a.getAttribute("href");
+        if(!href) return;
+        if(href.indexOf("#/")===0){ e.preventDefault(); navigate(href.slice(1)); return; }
+        if(href.charAt(0)==="/" && href.charAt(1)!=="/"){
+          let p=href;
+          if(BASE && p.indexOf(BASE)===0) p=p.slice(BASE.length)||"/";
+          e.preventDefault(); navigate(p);
+        }
+      });
+      window.addEventListener("popstate", route);
+      window.addEventListener("hashchange", ()=>{ if(legacyHashPath()!==null) route(); });
       route();
     });
     </script>

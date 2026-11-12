@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Petani Bijak Indonesia</title>
+<meta name="robots" content="noindex">
+<script>
+  // SPA fallback (pola spa-github-pages): ubah path yang tidak ditemukan menjadi
+  // /?/<path> lalu halaman utama mengembalikannya ke URL bersih via history.replaceState.
+  (function (l) {
+    var seg = l.pathname.split('/').filter(Boolean);
+    var keep = seg[0] === 'petanibijakindo' ? 1 : 0;
+    var base = keep ? '/petanibijakindo' : '';
+    var rest = l.pathname.split('/').slice(keep + 1).join('/');
+    var url = base + '/?/' + rest.replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash;
+    l.replace(url);
+  })(window.location);
+</script>
+</head>
+<body>
+<p>Mengarahkan ke halaman yang benar&hellip;</p>
+</body>
+</html>
