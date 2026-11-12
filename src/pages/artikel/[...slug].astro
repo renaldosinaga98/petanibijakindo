@@ -89,7 +89,7 @@ const tanggal = pubDate.toLocaleDateString('id-ID', {
   </head>
   <body>
     <header>
-      <a href="/">🌱 Petani <span>Bijak</span> Indonesia</a>
+      <a href={import.meta.env.BASE_URL}>🌱 Petani <span>Bijak</span> Indonesia</a>
     </header>
     <main>
       <span class="cat">{category}</span>
@@ -100,7 +100,7 @@ const tanggal = pubDate.toLocaleDateString('id-ID', {
       <article>
         <Content />
       </article>
-      <a class="back" href="/#artikel">← Kembali ke daftar artikel</a>
+      <a class="back" href={`${import.meta.env.BASE_URL}#artikel`}>← Kembali ke daftar artikel</a>
     </main>
     <footer>
       Petani Bijak Indonesia — Petani Cerdas, Hasil Berkualitas. · Team Vexora

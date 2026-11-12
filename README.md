@@ -22,6 +22,20 @@ npm run build    # hasil produksi ke folder dist/
 npm run preview  # pratinjau hasil build
 ```
 
+## Demo GitHub Pages
+
+Demo publik (sementara, sebelum domain & Cloudflare final):
+**https://renaldosinaga98.github.io/petanibijakindo/**
+
+Demo diterbitkan dari branch `gh-pages` (hasil build statis). Untuk memperbarui demo setelah mengubah source di `main`:
+
+```bash
+GITHUB_PAGES=true npx astro build --outDir dist-ghpages
+# lalu terbitkan isi dist-ghpages/ ke branch gh-pages
+```
+
+Mode `GITHUB_PAGES=true` mengatur `site` ke `https://renaldosinaga98.github.io` dan `base` ke `/petanibijakindo` (lihat `astro.config.mjs`); build produksi Cloudflare tidak terpengaruh.
+
 ## Deploy ke Cloudflare Pages
 
 Hubungkan repo ini di dashboard Cloudflare Pages dengan pengaturan:
