@@ -2,23 +2,22 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<title>Petani Bijak Indonesia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Halaman Tidak Ditemukan | Petani Bijak Indonesia</title>
 <meta name="robots" content="noindex">
-<script>
-  // SPA fallback (pola spa-github-pages): ubah path yang tidak ditemukan menjadi
-  // /?/<path> lalu halaman utama mengembalikannya ke URL bersih via history.replaceState.
-  (function (l) {
-    var seg = l.pathname.split('/').filter(Boolean);
-    var keep = seg[0] === 'petanibijakindo' ? 1 : 0;
-    var base = keep ? '/petanibijakindo' : '';
-    var rest = l.pathname.split('/').slice(keep + 1).join('/');
-    var url = base + '/?/' + rest.replace(/&/g, '~and~') +
-      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash;
-    l.replace(url);
-  })(window.location);
-</script>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#F8F7EF;color:#202C24;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+  .box{max-width:520px;text-align:center;background:#fff;border:1px solid #e3e6da;border-radius:16px;padding:40px 32px}
+  h1{color:#174B35;margin:0 0 12px;font-size:28px}
+  p{line-height:1.6;margin:0 0 24px}
+  a{display:inline-block;background:#328653;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:10px}
+</style>
 </head>
 <body>
-<p>Mengarahkan ke halaman yang benar&hellip;</p>
+  <div class="box">
+    <h1>404 — Halaman Tidak Ditemukan</h1>
+    <p>Maaf, halaman yang Anda cari tidak tersedia. Silakan kembali ke beranda Petani Bijak Indonesia untuk menggunakan kalkulator pertanian dan membaca panduan budidaya.</p>
+    <a href="/">Kembali ke Beranda</a>
+  </div>
 </body>
 </html>
