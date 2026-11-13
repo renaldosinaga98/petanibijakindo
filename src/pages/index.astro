@@ -1530,7 +1530,7 @@ collections:
 
     /* ---------------- Rendering kartu ---------------- */
     function toolCard(t){
-      return `<article class="tool-card"><div class="tool-art" role="img" aria-label="Ilustrasi ${t.name} — Petani Bijak Indonesia (petanibijakindonesia.click)">${ILLUS[t.illus]()}</div>
+      return `<article class="tool-card"><div class="tool-art" role="img" aria-label="Foto ${t.name} — Petani Bijak Indonesia (petanibijakindonesia.click)">${ILLUS[t.illus]()}</div>
         <div class="tool-body"><span class="tag">${t.cat}</span><h3>${t.name}</h3><p>${t.desc}</p>
         <div class="tool-foot"><span class="free">Gratis · Tanpa registrasi</span><a class="tool-cta" href="#/tools/${t.id}">Gunakan Tools <span class="arr" aria-hidden="true">→</span></a></div></div></article>`;
     }
@@ -1657,7 +1657,7 @@ collections:
       if(metaDesc) metaDesc.setAttribute("content", tool.name+" online gratis di Petani Bijak Indonesia (petanibijakindonesia.click). "+tool.desc);
       const ldCalc=$("#ld-dynamic");
       if(ldCalc) ldCalc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"WebApplication","name":tool.name+" — Petani Bijak Indonesia","url":SITE_URL+"/#/tools/"+tool.id,"applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"id-ID","description":tool.desc,"isPartOf":{"@id":"#site"},"publisher":{"@id":"#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}});
-      const artBox=$("#calc-art"); artBox.setAttribute("role","img"); artBox.setAttribute("aria-label","Ilustrasi "+tool.name+" — Petani Bijak Indonesia");
+      const artBox=$("#calc-art"); artBox.setAttribute("role","img"); artBox.setAttribute("aria-label","Foto "+tool.name+" — Petani Bijak Indonesia");
       artBox.innerHTML=ILLUS[tool.illus]();
       $("#calc-extra-note").innerHTML = tool.id==="pestisida"
         ? `<div class="note-box note-warn"><b>Utamakan keselamatan</b>Dosis pada kalkulator ini selalu berasal dari label resmi produk yang Anda masukkan. Baca label sebelum membuka kemasan dan gunakan APD lengkap saat aplikasi.</div>`
