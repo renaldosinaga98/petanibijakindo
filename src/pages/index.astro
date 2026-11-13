@@ -54,17 +54,16 @@
     <script type="application/ld+json" id="ld-dynamic">{"@context":"https://schema.org","@type":"WebPage","name":"Petani Bijak Indonesia — Kalkulator Pertanian Online Gratis","url":"https://petanibijakindonesia.click/","inLanguage":"id-ID","isPartOf":{"@id":"#site"},"publisher":{"@id":"#org"}}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <style>
       button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
       :root{
-        --forest:#174B35; --forest-2:#0F3524; --agri:#328653; --agri-dark:#26703F; --lime:#A4C96B; --lime-soft:#DCECC0;
-        --cream:#F8F7EF; --paper:#FFFFFF; --ink:#202C24; --ink-soft:#4A5A4E; --line:#E3E6D8;
-        --bg:var(--cream); --surface:#FFFFFF; --surface-2:#F1F2E6; --chip:#EDF3E2;
-        --shadow:0 10px 30px rgba(23,75,53,.10); --shadow-lg:0 24px 60px rgba(23,75,53,.16);
-        --radius:18px; --danger:#B3402A; --warn-bg:#FBF3DC; --warn-ink:#7A5B12;
-        --input-bg:#FFFFFF; --input-border:#C4CFB8; --danger-soft:#FDF0EC;
+        --forest:#1C5A3F; --forest-2:#17452F; --agri:#328653; --agri-dark:#257347; --lime:#A4C96B; --lime-soft:#DCECC0;
+        --cream:#FAF8F0; --paper:#FFFFFF; --ink:#22302A; --ink-soft:#55645A; --line:#E4E9D9;
+        --bg:var(--cream); --surface:#FFFFFF; --surface-2:#EFF4E3; --chip:#EAF3DC;
+        --shadow:0 6px 18px rgba(28,90,63,.07); --shadow-lg:0 14px 34px rgba(28,90,63,.11);
+        --radius:20px; --danger:#B3402A; --warn-bg:#FBF3DC; --warn-ink:#7A5B12;
+        --input-bg:#FFFFFF; --input-border:#C9D6BC; --danger-soft:#FDF0EC;
       }
       html[data-theme="dark"]{
         --bg:#10190F; --surface:#182619; --surface-2:#1E2F1D; --chip:#22351F; --paper:#182619;
@@ -79,24 +78,25 @@
       img,svg{display:block;max-width:100%}
       a{color:var(--agri);text-decoration:none}
       a:hover{text-decoration:underline}
-      button{font-family:inherit;cursor:pointer}
+      button{font-family:inherit;cursor:pointer;touch-action:manipulation}
+      a,button{-webkit-tap-highlight-color:transparent}
       :focus-visible{outline:3px solid var(--lime);outline-offset:2px;border-radius:6px}
       .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
       h1,h2,h3{line-height:1.2;margin:0}
       .serif{font-family:"Fraunces",serif}
 
       /* ---------- Header ---------- */
-      header.site{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+      header.site{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 96%, transparent);border-bottom:1px solid var(--line)}
       .nav{display:flex;align-items:center;gap:18px;padding:12px 0}
       .brand{display:flex;align-items:center;gap:11px;color:var(--ink);flex-shrink:0}
       .brand:hover{text-decoration:none}
-      .brand .logo-badge{width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,var(--forest),var(--agri));display:grid;place-items:center;box-shadow:var(--shadow)}
+      .brand .logo-badge{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#2F9E63,#7FB069);display:grid;place-items:center;box-shadow:var(--shadow)}
       .brand b{font-size:1.02rem;letter-spacing:-.01em;display:block;line-height:1.1}
       .brand small{color:var(--agri);font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
       nav.main{display:flex;gap:4px;margin-left:auto}
       nav.main a{color:var(--ink);font-weight:600;font-size:.93rem;padding:9px 13px;border-radius:10px;min-height:36px;display:inline-flex;align-items:center}
       nav.main a:hover{background:var(--chip);text-decoration:none}
-      nav.main a.active{background:var(--forest);color:#fff}
+      nav.main a.active{background:var(--agri);color:#fff}
       .nav-actions{display:flex;gap:8px;align-items:center}
       .icon-btn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
       .icon-btn:hover{border-color:var(--lime)}
@@ -107,11 +107,11 @@
       .mobile-menu a:last-child{border-bottom:0}
 
       /* ---------- Buttons ---------- */
-      .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:12px;padding:12px 22px;font-weight:700;font-size:.95rem;min-height:46px;transition:transform .15s ease, box-shadow .15s ease}
+      .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:14px;padding:12px 22px;font-weight:700;font-size:.95rem;min-height:46px;transition:transform .15s ease, box-shadow .15s ease}
       .btn:hover{text-decoration:none}
-      .btn-primary{background:var(--forest);color:#fff;box-shadow:0 8px 20px rgba(23,75,53,.28)}
-      .btn-primary:hover{background:var(--forest-2);transform:translateY(-1px)}
-      .btn-lime{background:var(--lime);color:var(--forest-2)}
+      .btn-primary{background:linear-gradient(135deg,#37A566,#2B7F4E);color:#fff;box-shadow:0 8px 18px rgba(46,143,90,.24)}
+      .btn-primary:hover{background:linear-gradient(135deg,#2F9A5E,#247245);transform:translateY(-1px)}
+      .btn-lime{background:var(--lime);color:#17452F}
       .btn-lime:hover{transform:translateY(-1px)}
       .btn-ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
       .btn-ghost:hover{border-color:var(--agri)}
@@ -119,7 +119,8 @@
       .btn-block{width:100%;justify-content:center}
 
       /* ---------- Hero ---------- */
-      .hero{padding:56px 0 30px;position:relative;overflow:hidden}
+      .hero{padding:56px 0 30px;position:relative;overflow:hidden;background:linear-gradient(180deg,#EEF5E0 0%,rgba(238,245,224,0) 80%)}
+      html[data-theme="dark"] .hero{background:linear-gradient(180deg,rgba(164,201,107,.07) 0%,rgba(164,201,107,0) 80%)}
       .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
       .pill{display:inline-flex;align-items:center;gap:8px;background:var(--chip);color:var(--forest);font-weight:700;font-size:.78rem;padding:7px 14px;border-radius:99px;letter-spacing:.02em}
       html[data-theme="dark"] .pill{color:var(--lime)}
@@ -209,11 +210,11 @@
       .calc-actions .btn-ghost{flex:0 1 auto;justify-content:center}
       .seg{display:flex;gap:8px;flex-wrap:wrap}
       .seg button{border:1.5px solid var(--input-border);background:var(--input-bg);color:var(--ink);border-radius:10px;padding:10px 16px;font-weight:700;font-size:.9rem;min-height:44px;line-height:1.3}
-      .seg button.on{background:var(--forest);color:#fff;border-color:var(--forest)}
+      .seg button.on{background:var(--agri);color:#fff;border-color:var(--agri)}
       html[data-theme="dark"] .seg button.on{background:var(--agri);border-color:var(--agri)}
       .result-empty{color:var(--ink-soft);text-align:center;padding:40px 12px;font-size:.95rem;line-height:1.6}
       .result-empty .big{font-size:2rem;margin-bottom:8px}
-      .res-highlight{background:linear-gradient(145deg,var(--forest),var(--agri));color:#fff;border-radius:16px;padding:22px;margin-bottom:14px}
+      .res-highlight{background:linear-gradient(145deg,#27864F,#3E9E5F);color:#fff;border-radius:16px;padding:22px;margin-bottom:14px}
       .res-highlight small{opacity:.88;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px}
       .res-highlight .val{font-size:clamp(1.7rem,4vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums}
       .res-highlight .val2{font-size:.95rem;opacity:.94;margin-top:5px;line-height:1.5}
@@ -239,7 +240,7 @@
       /* ---------- Articles ---------- */
       .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
       .filter-row button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:8px 16px;font-weight:700;font-size:.85rem;min-height:38px}
-      .filter-row button.on{background:var(--forest);color:#fff;border-color:var(--forest)}
+      .filter-row button.on{background:var(--agri);color:#fff;border-color:var(--agri)}
       .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
       .art-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;color:var(--ink);transition:transform .18s ease, box-shadow .18s ease}
       .art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);text-decoration:none}
@@ -280,22 +281,26 @@
       .ad-slot{display:block;border:1.5px dashed var(--line);border-radius:16px;padding:20px;margin:34px 0 6px;background:var(--surface);min-height:64px}
 
       /* ---------- Footer ---------- */
-      footer.site{background:var(--forest-2);color:#DCE8D2;margin-top:70px}
-      html[data-theme="dark"] footer.site{background:#0B1F14}
+      footer.site{background:linear-gradient(180deg,#EBF3DB,#E0EECB);color:#39543F;margin-top:70px;border-top:1px solid var(--line)}
+      html[data-theme="dark"] footer.site{background:#0B1F14;color:#C9DCC0;border-top:1px solid var(--line)}
+      html[data-theme="dark"] footer.site h4{color:#fff}
+      html[data-theme="dark"] footer.site a{color:#C9DCC0}
+      html[data-theme="dark"] footer.site a:hover{color:#fff}
+      html[data-theme="dark"] .foot-bottom{border-top:1px solid rgba(255,255,255,.14)}
       .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:48px 0 34px}
-      footer.site h4{color:#fff;font-size:.95rem;margin:0 0 13px}
-      footer.site a{color:#C9DCC0;display:block;padding:6px 0;font-size:.9rem;line-height:1.5}
-      footer.site a:hover{color:#fff}
+      footer.site h4{color:#1C5A3F;font-size:.95rem;margin:0 0 13px}
+      footer.site a{color:#3D6148;display:block;padding:6px 0;font-size:.9rem;line-height:1.5}
+      footer.site a:hover{color:#17452F}
       footer.site p{font-size:.9rem;line-height:1.65;margin:0 0 12px}
-      .foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding:18px 0 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.84rem}
+      .foot-bottom{border-top:1px solid rgba(28,90,63,.16);padding:18px 0 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.84rem}
 
-      .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:var(--forest);color:#fff;padding:13px 22px;border-radius:13px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow-lg);z-index:100;transition:transform .3s ease, opacity .3s ease, visibility .3s;max-width:92vw;text-align:center;opacity:0;visibility:hidden;pointer-events:none}
+      .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:#256B45;color:#fff;padding:13px 22px;border-radius:13px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow-lg);z-index:100;transition:transform .3s ease, opacity .3s ease, visibility .3s;max-width:92vw;text-align:center;opacity:0;visibility:hidden;pointer-events:none}
       .toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
       .view{display:none}
       .view.active{display:block}
       .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
       .how-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-      .how-card .num{width:38px;height:38px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:12px}
+      .how-card .num{width:38px;height:38px;border-radius:50%;background:var(--agri);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:12px}
       .how-card h3{font-size:1rem;font-weight:800;margin-bottom:6px}
       .how-card p{color:var(--ink-soft);font-size:.9rem;margin:0}
 
@@ -337,7 +342,7 @@
       .calc-pro span{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
       .sched-note{background:var(--chip);border-radius:14px;padding:14px 16px;font-size:.9rem;margin:0 0 16px}
       .sched-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:.9rem;margin:0 0 8px}
-      .sched-table th{background:var(--forest);color:#fff;text-align:left;padding:11px 14px;font-size:.8rem;letter-spacing:.03em}
+      .sched-table th{background:var(--agri);color:#fff;text-align:left;padding:11px 14px;font-size:.8rem;letter-spacing:.03em}
       .sched-table td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top}
       .sched-table td:first-child{white-space:nowrap;font-weight:700;color:var(--forest)}
       html[data-theme="dark"] .sched-table td:first-child{color:var(--lime)}
@@ -375,6 +380,10 @@
         .field-row{grid-template-columns:1fr}
         .chip-a{left:2px}.chip-b{right:2px}
         .hero{padding-top:36px}
+        .tool-card:hover,.art-card:hover,.crop-card:hover,.cat-card:hover{transform:none;box-shadow:var(--shadow)}
+        .hero-art .art-card{box-shadow:var(--shadow)}
+        section.block{padding:40px 0 6px}
+        .panel{border-radius:18px}
         .foot-grid{grid-template-columns:1fr;gap:22px}
       }
       @media (prefers-reduced-motion:reduce){
@@ -647,7 +656,7 @@
           <div>
             <h4>Petani Bijak Indonesia</h4>
             <p>“Petani Cerdas, Hasil Berkualitas.” Platform tools kalkulator pertanian dan panduan budidaya untuk petani, penyuluh, dan pelaku usaha tani di seluruh Indonesia.</p>
-            <p>Dikelola oleh <b style="color:#fff">Renaldo Sinaga</b> bersama <b style="color:#fff">Team Vexora</b>.<br/>Situs resmi: <a href="https://petanibijakindonesia.click/" target="_blank" rel="noopener" style="display:inline;padding:0">petanibijakindonesia.click</a><br/>Kontak: <a href="mailto:renaldosinaga98@gmail.com" style="display:inline;padding:0">renaldosinaga98@gmail.com</a></p>
+            <p>Dikelola oleh <b style="color:#1C5A3F">Renaldo Sinaga</b> bersama <b style="color:#1C5A3F">Team Vexora</b>.<br/>Situs resmi: <a href="https://petanibijakindonesia.click/" target="_blank" rel="noopener" style="display:inline;padding:0">petanibijakindonesia.click</a><br/>Kontak: <a href="mailto:renaldosinaga98@gmail.com" style="display:inline;padding:0">renaldosinaga98@gmail.com</a></p>
           </div>
           <div>
             <h4>Tools</h4>
