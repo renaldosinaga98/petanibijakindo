@@ -404,6 +404,9 @@
     </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5449644414962326"
      crossorigin="anonymous"></script>
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
 </head>
   <body>
   <body>
@@ -693,7 +696,7 @@
             <a href="#/ketentuan">Syarat &amp; Ketentuan</a>
             <a href="#/disclaimer">Disclaimer</a>
             <p style="margin-top:12px;font-size:.82rem">Dibangun dengan Astro + TypeScript + Tailwind CSS, kode sumber di GitHub, ter-deploy otomatis di Cloudflare Pages, konten dikelola via Decap CMS.</p>
-            <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">GitHub: renaldosinaga98/petanibijakindo</a>
+            <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">GitHub: renaldosinaga98/petanibijakindo.click</a>
           </div>
         </div>
         <div class="foot-bottom">
@@ -1375,7 +1378,7 @@
         <p>Setiap angka rekomendasi dan panduan di platform ini disusun dengan standar berikut:</p>
         <ul><li><b>Sumber primer resmi:</b> Kementerian Pertanian, Balitbangtan/BRIN (Balitsa, Balitbu, Balitkabi, Puslitkoka, PPKS), BPS, BMKG, dan FAO — dicantumkan sebagai referensi di akhir setiap artikel.</li><li><b>Dosis tidak dikarang:</b> dosis pestisida selalu berasal dari label resmi produk; dosis pupuk adalah kisaran rekomendasi spesifik lokasi yang dapat disesuaikan pengguna.</li><li><b>Penulis &amp; tanggal jelas:</b> setiap artikel mencantumkan penulis dan tanggal publikasi.</li><li><b>Koreksi terbuka:</b> pembaca dapat mengirim koreksi ke <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a>; koreksi yang terverifikasi akan diperbarui pada konten terkait.</li><li><b>Cakupan komoditas:</b> panduan mencakup padi, jagung, kedelai, singkong, cabai, terong, pare, semangka, melon, tomat, bawang merah, mentimun, kentang, sayuran daun, pisang, jeruk, kopi, dan kelapa sawit.</li></ul>
         <h2>Teknologi yang Kami Pakai</h2>
-        <p>Website ini dibangun dengan <b>Astro</b> (TypeScript + Tailwind CSS), kode sumbernya tersimpan di GitHub pada repositori <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo</a> (branch <code>main</code>), dan ter-deploy otomatis sebagai situs statis di <b>Cloudflare Pages</b>. Artikel dan panduan dikelola melalui CMS berbasis GitHub (Decap CMS + Astro Content Collections). Rincian alur pengelolaan konten dapat dibaca di halaman <a href="#/kelola">Kelola Konten (CMS)</a>.</p>
+        <p>Website ini dibangun dengan <b>Astro</b> (TypeScript + Tailwind CSS), kode sumbernya tersimpan di GitHub pada repositori <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo.click</a> (branch <code>main</code>), dan ter-deploy otomatis sebagai situs statis di <b>Cloudflare Pages</b>. Artikel dan panduan dikelola melalui CMS berbasis GitHub (Decap CMS + Astro Content Collections). Rincian alur pengelolaan konten dapat dibaca di halaman <a href="#/kelola">Kelola Konten (CMS)</a>.</p>
         <p>Hubungi kami kapan saja melalui email <a href="mailto:renaldosinaga98@gmail.com">renaldosinaga98@gmail.com</a> atau halaman <a href="#/kontak">Kontak</a>.</p>`},
       kontak:{ title:"Kontak", nav:"kontak", html:`
         <div class="crumb"><a href="#/">Beranda</a> <span>›</span> <span>Kontak</span></div>
@@ -1446,7 +1449,7 @@
           <li><b>Framework:</b> Astro + TypeScript + Tailwind CSS + Lucide Icons. Halaman dirender statis (SSG); kalkulator berjalan sebagai client script/Astro islands di browser, tanpa backend wajib.</li>
           <li><b>Hosting &amp; deploy:</b> Cloudflare Pages — setiap perubahan di branch utama GitHub memicu build &amp; deploy otomatis, dilengkapi header keamanan dan cache aset statis.</li>
           <li><b>Domain final:</b> <b>petanibijakindonesia.click</b> (<code>https://petanibijakindonesia.click</code>) — domain keyword persis “petani bijak indonesia”, terhubung sebagai custom domain di Cloudflare Pages; seluruh canonical, Open Graph, dan schema.org situs menunjuk ke domain ini.</li>
-          <li><b>Kode sumber:</b> GitHub — repositori publik <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo</a>, branch utama <code>main</code>; seluruh riwayat perubahan terekam sebagai commit.</li>
+          <li><b>Kode sumber:</b> GitHub — repositori publik <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">renaldosinaga98/petanibijakindo.click</a>, branch utama <code>main</code>; seluruh riwayat perubahan terekam sebagai commit.</li>
           <li><b>CMS:</b> Decap CMS (panel admin di rute <code>/admin</code>) dengan backend GitHub dan editorial workflow (draft → review → publish).</li>
           <li><b>Konten:</b> Astro Content Collections — artikel &amp; panduan adalah file Markdown/MDX bervalidasi skema di repositori.</li>
         </ul>
@@ -1473,7 +1476,7 @@
         <h2>Konfigurasi Decap CMS (public/admin/config.yml)</h2>
         <div class="refs" style="margin:0 0 16px"><pre style="margin:0;overflow-x:auto;font-size:.84rem;line-height:1.55">backend:
   name: github
-  repo: renaldosinaga98/petanibijakindo
+  repo: renaldosinaga98/petanibijakindo.click
   branch: main
 publish_mode: editorial_workflow
 media_folder: public/images/uploads
@@ -1494,8 +1497,8 @@ collections:
         <p>Domain final situs adalah <b>petanibijakindonesia.click</b> — URL dasar resmi <code>https://petanibijakindonesia.click</code> (root, tanpa www, HTTPS). Nilai <code>site</code> di <code>astro.config.mjs</code> diatur persis ke URL tersebut, dan darinya dibangkitkan canonical URL setiap halaman, <code>og:url</code>, schema.org, serta sitemap: <code>https://petanibijakindonesia.click/sitemap.xml</code> (dirujuk juga dari <code>robots.txt</code> sebagai <code>Sitemap: https://petanibijakindonesia.click/sitemap.xml</code>). Domain demo GitHub Pages lama tidak lagi dipakai sebagai canonical. Tautan repositori tetap merujuk ke <a href="https://github.com/renaldosinaga98/petanibijakindo" target="_blank" rel="noopener">github.com/renaldosinaga98/petanibijakindo</a> sebagai tautan repo, bukan identitas situs.</p>
         <h2>Menghubungkan Cloudflare Pages ke Repo GitHub</h2>
         <ul>
-          <li><b>1.</b> Push pertama kode Astro ke repo <code>renaldosinaga98/petanibijakindo</code> akan membuat branch <code>main</code> (repo saat ini masih kosong).</li>
-          <li><b>2.</b> Di dashboard Cloudflare: <i>Workers &amp; Pages → Create → Pages → Connect to Git</i>, pilih repo <code>renaldosinaga98/petanibijakindo</code>.</li>
+          <li><b>1.</b> Push pertama kode Astro ke repo <code>renaldosinaga98/petanibijakindo.click</code> akan membuat branch <code>main</code> (repo saat ini masih kosong).</li>
+          <li><b>2.</b> Di dashboard Cloudflare: <i>Workers &amp; Pages → Create → Pages → Connect to Git</i>, pilih repo <code>renaldosinaga98/petanibijakindo.click</code>.</li>
           <li><b>3.</b> Atur build: production branch <code>main</code>, build command <code>npm run build</code>, build output directory <code>dist</code>, framework preset Astro.</li>
           <li><b>4.</b> Simpan &amp; deploy — setelah itu setiap push ke branch <code>main</code> (termasuk commit dari Decap CMS) otomatis memicu build dan deploy ulang.</li>
         </ul>
