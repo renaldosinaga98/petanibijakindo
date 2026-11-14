@@ -5,7 +5,7 @@ category: "Budidaya Jagung"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-14
 readTime: "7 menit baca"
-draft: true
+draft: false
 ---
 
 Jagung manis dipanen muda umur 65–75 hari untuk pasar sayur, swalayan, dan jagung bakar — harganya per tongkol jauh di atas jagung pipilan. Karena dipanen saat gula belum berubah menjadi pati, ketepatan waktu panen dan kecepatan distribusi adalah segalanya.
