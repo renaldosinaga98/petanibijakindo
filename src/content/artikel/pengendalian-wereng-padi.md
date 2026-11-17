@@ -5,7 +5,7 @@ category: "Pengendalian Hama"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-16
 readTime: "8 menit baca"
-draft: true
+draft: false
 ---
 
 Wereng batang coklat adalah hama padi paling merusak di Indonesia: mengisap cairan batang, menularkan virus kerdil, dan dapat membuat satu hamparan puso (gagal panen) dalam hitungan minggu. Kuncinya bukan semprotan terbanyak, melainkan pengamatan dini, varietas tahan, dan tidak memicu ledakan populasi.
