@@ -5,7 +5,7 @@ category: "Manajemen Usaha Tani"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-18
 readTime: "8 menit baca"
-draft: true
+draft: false
 ---
 
 Cabai adalah komoditas berbiaya tinggi: satu hektare dapat menyerap modal belasan hingga puluhan juta rupiah sebelum panen pertama. Artikel ini merinci pos-pos biayanya — bibit, mulsa, pupuk, pestisida, ajir, dan tenaga kerja — agar Anda bisa menyusun anggaran dan titik impas sebelum menanam, bukan setelah panen.
