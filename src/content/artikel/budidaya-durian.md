@@ -5,7 +5,7 @@ category: "Perkebunan"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-20
 readTime: "9 menit baca"
-draft: true
+draft: false
 ---
 
 Durian varietas unggul seperti Musang King, Bawor, dan Super Tembaga mulai berbuah umur 4–6 tahun dari bibit sambung dan dapat produktif puluhan tahun. Artikel ini membahas syarat lahan, pemilihan bibit okulasi, jarak tanam, dan perawatan tahun-tahun awal yang menentukan keberhasilan kebun durian.
