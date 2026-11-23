@@ -5,7 +5,7 @@ category: "Budidaya Sayuran"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-22
 readTime: "7 menit baca"
-draft: true
+draft: false
 ---
 
 Jahe merah adalah tanaman herbal bernilai tinggi untuk industri jamu dan minuman kesehatan, dan ia tidak menuntut lahan luas: polybag dan karung bekas pun produktif. Pelajari pemilihan rimpang bibit, media tanam, dan cara memanen jahe tua umur 10–12 bulan dengan kadar minyak atsiri terbaik.
