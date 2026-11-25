@@ -5,7 +5,7 @@ category: "Budidaya Palawija"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-24
 readTime: "7 menit baca"
-draft: true
+draft: false
 ---
 
 Kacang tanah adalah legum pengikat nitrogen: ia memanen polong 1,5–2,5 ton per hektare sambil meninggalkan nitrogen untuk tanaman berikutnya. Umurnya pendek (90–110 hari), cocok mengisi lahan setelah padi, dan kunci hasilnya ada pada ginofor yang berhasil masuk ke tanah.
