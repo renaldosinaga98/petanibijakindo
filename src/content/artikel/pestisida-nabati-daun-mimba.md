@@ -5,7 +5,7 @@ category: "Pengendalian Hama"
 author: "Renaldo Sinaga"
 pubDate: 2026-11-26
 readTime: "8 menit baca"
-draft: true
+draft: false
 ---
 
 Daun dan biji mimba mengandung azadirachtin yang mengganggu makan dan pergantian kulit serangga hama. Artikel ini menjelaskan cara membuat ekstrak mimba yang benar, batas keampuhannya yang jujur, dan aturan keselamatan yang tetap berlaku meskipun bahannya alami.
